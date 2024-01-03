@@ -1,3 +1,4 @@
+import fetchData from "@/utils/api";
 import { useState, useEffect } from "react";
 
 export default function LoginCard({
@@ -11,12 +12,13 @@ export default function LoginCard({
 }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setUsername("");
     setPassword("");
-    console.log("submitted");
+    setIsSubmitted(true);
   };
 
   const handleClick = (e) => {
@@ -26,8 +28,13 @@ export default function LoginCard({
     } else if (pageName === "Login") {
       setPageName("Sign Up");
     }
-    console.log('clicked',pageName);
   };
+
+  useEffect(() => {
+    if (isSubmitted) {
+      fetchData();
+    }
+  }, [isSubmitted]);
 
   return (
     <>
