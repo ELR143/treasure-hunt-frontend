@@ -1,9 +1,21 @@
-'use client'
+"use client";
 
-import { useCallback, createContext } from "react";
+import { useState, createContext } from "react";
 
 const { RxAvatar } = require("react-icons/rx");
 
-const userContext = createContext({username: 'default_user', avatar: <RxAvatar />})
+export const UserContext = createContext({
+  username: "test_user",
+  avatar: <RxAvatar />,
+});
 
-export default userContext;
+export const UserProvider = ({ children }) => {
+  const [user, setUser] = useState({});
+//   const [isLoading, setIsLoading] = useState(true);
+
+  return (
+    <UserContext.Provider value={{ user, setUser }}>
+      {children}
+    </UserContext.Provider>
+  );
+};

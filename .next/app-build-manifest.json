@@ -21,6 +21,28 @@
       "static/chunks/main-app.js",
       "static/css/app/home/layout.css",
       "static/chunks/app/home/layout.js"
+    ],
+    "/leaderboard/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/leaderboard/page.js"
+    ],
+    "/leaderboard/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/leaderboard/layout.css",
+      "static/chunks/app/leaderboard/layout.js"
+    ],
+    "/collection/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/collection/page.js"
+    ],
+    "/collection/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/collection/layout.css",
+      "static/chunks/app/collection/layout.js"
     ]
   }
 }

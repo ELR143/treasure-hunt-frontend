@@ -11,12 +11,6 @@ export default function Profile() {
     { name: "Treasure Collection", href: "/collection" },
   ];
 
-  const profileRequests = [
-    {name: 'Change avatar' },
-    {name: 'Change username' },
-    {name: 'Change password' }
-  ]
-
   return (
     <main className='w-full mt-2 flex flex-col mx-auto'>
       <div className='mx-auto'>{avatar}</div>

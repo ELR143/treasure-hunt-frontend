@@ -1,7 +1,8 @@
 import fetchData from "@/utils/api";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/navigation";
 import { RxAvatar } from "react-icons/rx";
+import { UserContext } from "./UserContext";
 
 export default function LoginCard({
   defaultPageInfo: {
@@ -10,13 +11,17 @@ export default function LoginCard({
     secondFormDescription,
   },
   pageName,
-  setPageName,
-  setUser
+  setPageName
 }) {
-  const [username, setUsername] = useState("");
+  // const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const { username, avatar } = useContext(UserContext)
   const router = useRouter();
+  console.log(username, avatar)
+  let {user, setUser} = useContext(UserContext)
+
+  console.log(user)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,9 +30,9 @@ export default function LoginCard({
     } else if (firstFormButtonName === 'Sign Up') {
       console.log('send a get and a post request?')
     }
-    setUser({username: 'loggedInUser', avatar: <RxAvatar />})
+    setUser({username: 'loggedInUser', avatar: 'hello'})
     router.push('/home')
-    setUsername("");
+    // setUsername("");
     setPassword("");
     setIsSubmitted(true);
   };
@@ -59,7 +64,7 @@ export default function LoginCard({
           placeholder='Username...'
           value={username}
           required
-          onChange={(e) => setUsername(e.target.value)}
+          // onChange={(e) => setUsername(e.target.value)}
         />
 
         <input
