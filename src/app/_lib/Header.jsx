@@ -1,11 +1,15 @@
 "use client";
 import { RxAvatar } from "react-icons/rx";
 import Link from "next/link";
-import { UserContext, UserProvider } from "./UserContext";
-import { useContext } from "react";
+import { useState, useEffect } from "react";
 
 export default function Header() {
-  const { user } = useContext(UserContext);
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    const currentUser = localStorage.getItem("user");
+    setUser(currentUser);
+  }, []);
 
   console.log(user);
 
@@ -15,7 +19,7 @@ export default function Header() {
         <img className='w-10' src='/magikarp.png' />
       </Link>
 
-      <h1 className='md:text-5xl text-3xl'>Welcome!</h1>
+      <h1 className='md:text-5xl text-3xl'>Welcome {user}!</h1>
 
       <Link href='/profile'>
         <RxAvatar className='w-10 h-10' />

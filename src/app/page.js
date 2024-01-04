@@ -1,8 +1,8 @@
 "use client";
 
 import LoginCard from "./_lib/LoginCard";
-import { useState, useEffect, useContext } from "react";
-import { UserContext, UserProvider } from "./_lib/UserContext";
+import { useState, useEffect } from "react";
+
 
 export default function Home() {
   const pageInfo = {

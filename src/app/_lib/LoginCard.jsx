@@ -1,8 +1,8 @@
 import fetchData from "@/utils/api";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { RxAvatar } from "react-icons/rx";
-import { UserContext } from "./UserContext";
+
 
 export default function LoginCard({
   defaultPageInfo: {
@@ -13,26 +13,23 @@ export default function LoginCard({
   pageName,
   setPageName
 }) {
-  // const [username, setUsername] = useState("");
+  // const [user, setUser] = useState({username: 'default_user'});
+  const [username, setUsername] = useState('')
   const [password, setPassword] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const { username, avatar } = useContext(UserContext)
   const router = useRouter();
-  console.log(username, avatar)
-  let {user, setUser} = useContext(UserContext)
-
-  console.log(user)
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (firstFormButtonName === 'Login') {
       console.log('send get request')
     } else if (firstFormButtonName === 'Sign Up') {
       console.log('send a get and a post request?')
     }
-    setUser({username: 'loggedInUser', avatar: 'hello'})
+    localStorage.setItem('user', username)
     router.push('/home')
-    // setUsername("");
+    setUsername("");
     setPassword("");
     setIsSubmitted(true);
   };
@@ -64,7 +61,7 @@ export default function LoginCard({
           placeholder='Username...'
           value={username}
           required
-          // onChange={(e) => setUsername(e.target.value)}
+          onChange={(e) => setUsername(e.target.value)}
         />
 
         <input
