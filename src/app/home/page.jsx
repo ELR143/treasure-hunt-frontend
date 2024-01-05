@@ -1,19 +1,20 @@
-'use client'
-
+"use client";
+import { useState } from "react";
 import Card from "../_lib/Card";
 
 export default function HomePage() {
-const homeLinks = [
-  {name: 'Leaderboard', href: '/leaderboard'},
-  {name: 'Map', href: '/map'},
-  {name: 'Treasure Collection', href: '/collection'},
-  {name: 'Edit Profile', href: '/profile'}
-]
+  // const [user, setUser] = useState(localStorage.getItem("user"));
+  const homeLinks = [
+    { name: "Leaderboard", href: "/leaderboard", isProtected: false },
+    { name: "Map", href: "/map", isProtected: false },
+    { name: "Treasure Collection", href: "/collection", isProtected: true },
+    { name: "Profile", href: "/profile", isProtected: true },
+  ];
 
   return (
     <>
       <main>
-        <ul className='flex flex-col justify-center items-center'>
+        <ul className="flex flex-col justify-center items-center">
           {homeLinks.map((link, i) => {
             return <Card key={i} cardHeading={link} />;
           })}
