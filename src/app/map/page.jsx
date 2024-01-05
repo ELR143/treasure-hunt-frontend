@@ -125,53 +125,50 @@ function MyComponent() {
     calculateDistances();
   };
 
-return <h1>map</h1>
+  return isLoadedMap ? (
+    <>
+      <section className="userInteraction">
+        <div onClick={checkDistance} className="find button">
+          Find Closest Treasure
+        </div>
+        {collect ? <CollectTreasure treasure={minDistance.place} /> : ""}
+      </section>
 
-//   return isLoadedMap ? (
-//     <>
-//       <section className="userInteraction">
-//         <div onClick={checkDistance} className="find button">
-//           Find Closest Treasure
-//         </div>
-//         {collect ? <CollectTreasure treasure={minDistance.place} /> : ""}
-//       </section>
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={currentLocation.cords}
+        zoom={8}
+        options={options}
+      >
+        <MarkerClusterer>
+          {(clusterer) =>
+            points.map((treasure, i) => (
+              <MarkerF
+                key={i}
+                position={{
+                  lat: treasure.cords.lat,
+                  lng: treasure.cords.lng,
+                }}
+                icon={icons[treasure.type]}
+                clusterer={clusterer}
+              />
+            ))
+          }
+        </MarkerClusterer>
 
-//       <GoogleMap
-//         mapContainerStyle={containerStyle}
-//         center={currentLocation.cords}
-//         zoom={8}
-//         options={options}
-//       >
-//         <MarkerClusterer>
-//           {(clusterer) =>
-//             points.map((treasure, i) => (
-//               <MarkerF
-//                 key={i}
-//                 position={{
-//                   lat: treasure.cords.lat,
-//                   lng: treasure.cords.lng,
-//                 }}
-//                 icon={icons[treasure.type]}
-//                 clusterer={clusterer}
-//               />
-//             ))
-//           }
-//         </MarkerClusterer>
-
-//         <MarkerF
-//           position={{
-//             lat: currentLocation.cords.lat,
-//             lng: currentLocation.cords.lng,
-//           }}
-//           icon={icons[currentLocation.type]}
-//           label={"Its U!"}
-//         />
-//         <></>
-//       </GoogleMap> 
-//     </>
-//   ) : (
-//     <></>
-//   );
+        <MarkerF
+          position={{
+            lat: currentLocation.cords.lat,
+            lng: currentLocation.cords.lng,
+          }}
+          icon={icons[currentLocation.type]}
+          label={"Its U!"}
+        />
+      </GoogleMap>
+    </>
+  ) : (
+    <></>
+  );
 }
 
 export default MyComponent;

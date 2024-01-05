@@ -16,11 +16,11 @@ function fetchData() {
 }
 
 function checkRegisteredUser(userName, userPassword) {
-  fetch("https://treasure-hunt-backend-test.onrender.com/users/").then(() => {
-    //usersList => compare with username-userPassword
-    //ok -> return true
-    return true;
-  });
+  // fetch("https://treasure-hunt-backend-test.onrender.com/users/").then(() => {
+  //   //usersList => compare with username-userPassword
+  //   //ok -> return true
+  //   return true;
+  // });
 }
 
 function editProfile(userInfo) {

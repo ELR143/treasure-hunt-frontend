@@ -22,16 +22,16 @@ export default function LoginCard({
 
     if (firstFormButtonName === "Login") {
       console.log("send get request");
-      api.checkRegisteredUser().then((res)=>{
+      api.checkRegisteredUser().then((res) => {
         //if res = true
-         localStorage.setItem("user", username);
-          router.push("/home");
-      })
+        //  localStorage.setItem("user", username);
+        //   router.push("/home");
+      });
     } else if (firstFormButtonName === "Sign Up") {
       console.log("send a get and a post request?");
     }
-    // localStorage.setItem("user", username);
-    // router.push("/home");
+    localStorage.setItem("user", username);
+    router.push("/home");
     setUsername("");
     setPassword("");
     setIsSubmitted(true);
