@@ -564,9 +564,6 @@ video {
   --tw-backdrop-saturate:  ;
   --tw-backdrop-sepia:  ;
 }
-.visible {
-  visibility: visible;
-}
 .m-8 {
   margin: 2rem;
 }
@@ -589,14 +586,8 @@ video {
 .mt-4 {
   margin-top: 1rem;
 }
-.block {
-  display: block;
-}
 .flex {
   display: flex;
-}
-.hidden {
-  display: none;
 }
 .h-10 {
   height: 2.5rem;
@@ -652,15 +643,8 @@ video {
 .rounded {
   border-radius: 0.25rem;
 }
-.rounded-full {
-  border-radius: 9999px;
-}
 .rounded-lg {
   border-radius: 0.5rem;
-}
-.bg-blue-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(59 130 246 / var(--tw-bg-opacity));
 }
 .bg-gray-200 {
   --tw-bg-opacity: 1;
@@ -740,10 +724,6 @@ video {
   --tw-text-opacity: 1;
   color: rgb(55 65 81 / var(--tw-text-opacity));
 }
-.text-orange-400 {
-  --tw-text-opacity: 1;
-  color: rgb(251 146 60 / var(--tw-text-opacity));
-}
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
@@ -787,26 +767,42 @@ body {
     height: 100vh
 }
 
-.hover\:bg-blue-700:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(29 78 216 / var(--tw-bg-opacity));
+.userInteraction {
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  color: antiquewhite;
+}
+.button {
+  border-radius: 10px;
+  padding: 10px;
+  transition: all 500ms;
+  margin: 10px;
 }
 
+.find {
+  background-color: #545454;
+}
+
+.collect {
+  background-color: rgb(10, 110, 76);
+}
+.button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
 .hover\:bg-gray-600:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(75 85 99 / var(--tw-bg-opacity));
 }
-
 .focus\:bg-gray-600:focus {
   --tw-bg-opacity: 1;
   background-color: rgb(75 85 99 / var(--tw-bg-opacity));
 }
-
 .focus\:outline-none:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
 }
-
 @media (min-width: 768px) {
 
   .md\:text-5xl {
@@ -814,7 +810,6 @@ body {
     line-height: 1;
   }
 }
-
 @media (prefers-color-scheme: dark) {
 
   .dark\:bg-gray-700 {
@@ -837,4 +832,3 @@ body {
     color: rgb(209 213 219 / var(--tw-text-opacity));
   }
 }
-

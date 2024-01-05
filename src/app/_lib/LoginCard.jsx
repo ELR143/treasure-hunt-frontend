@@ -22,7 +22,7 @@ export default function LoginCard({
 
     if (firstFormButtonName === "Login") {
       console.log("send get request");
-      api.checkRegisteredUser().then((res) => {
+      api.checkRegisteredUser(username, password).then((res) => {
         //if res = true
         //  localStorage.setItem("user", username);
         //   router.push("/home");

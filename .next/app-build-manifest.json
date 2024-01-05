@@ -1,15 +1,21 @@
 {
   "pages": {
-    "/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
-    ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
+    ],
+    "/map/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/map/page.js"
+    ],
+    "/map/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/map/layout.css",
+      "static/chunks/app/map/layout.js"
     ],
     "/home/page": [
       "static/chunks/webpack.js",
@@ -22,16 +28,43 @@
       "static/css/app/home/layout.css",
       "static/chunks/app/home/layout.js"
     ],
-    "/map/page": [
+    "/collection/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/map/page.js"
+      "static/chunks/app/collection/page.js"
     ],
-    "/map/layout": [
+    "/collection/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/map/layout.css",
-      "static/chunks/app/map/layout.js"
+      "static/css/app/collection/layout.css",
+      "static/chunks/app/collection/layout.js"
+    ],
+    "/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/page.js"
+    ],
+    "/profile/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/profile/page.js"
+    ],
+    "/profile/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/profile/layout.css",
+      "static/chunks/app/profile/layout.js"
+    ],
+    "/leaderboard/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/leaderboard/page.js"
+    ],
+    "/leaderboard/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/leaderboard/layout.css",
+      "static/chunks/app/leaderboard/layout.js"
     ]
   }
 }

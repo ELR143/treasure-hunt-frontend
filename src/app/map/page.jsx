@@ -59,7 +59,7 @@ function MyComponent() {
   });
 
   useEffect(() => {
-    function cordsDetecting(respond) {
+    function coordsDetecting(respond) {
       let lng = respond.coords.longitude;
       let lat = respond.coords.latitude;
       setCurrentLocation((curr) => {
@@ -71,7 +71,7 @@ function MyComponent() {
       setIsLoadedMap(true);
     }
 
-    navigator.geolocation.getCurrentPosition(cordsDetecting);
+    navigator.geolocation.getCurrentPosition(coordsDetecting);
   }, []);
 
   useEffect(() => {
@@ -167,7 +167,7 @@ function MyComponent() {
       </GoogleMap>
     </>
   ) : (
-    <></>
+    <><h1>Loading, please wait...</h1></>
   );
 }
 

@@ -1,30 +1,105 @@
+const baseUrl = "https://treasure-hunt-backend-test.onrender.com/";
+
 function fetchData() {
-  console.log("FETCHING");
-  fetch("https://molchanova-nc-news.onrender.com/api")
+  let url = baseUrl + `users/`;
+  return fetch(url)
     .then((res) => {
       const item = res.json();
-
-      console.log(item, "HELLO");
       return item;
     })
-    .then((result) => console.log(result, "EMMAs DATA"))
+    .then((data) => {
+      return data;
+    })
     .catch((error) => {
-      console.log("FROM ERROR");
-
       console.error("Error fetching data:", error);
     });
 }
 
 function checkRegisteredUser(userName, userPassword) {
-  // fetch("https://treasure-hunt-backend-test.onrender.com/users/").then(() => {
-  //   //usersList => compare with username-userPassword
-  //   //ok -> return true
-  //   return true;
-  // });
+  let url = baseUrl + `users/`;
+  console.log(userName, userPassword);
+  return fetch(url)
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      console.log(data[0].username);
+      if (userName === data[0].username) {
+        return data;
+      } else {
+        console.log('aefekjasudfakiej')
+        // error? route to the page but with the 'Please log in' thing?
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });
+
 }
 
-function editProfile(userInfo) {
+// to edit the avatar or treasures, the request must be sent to the profiles endpoint
+function editAvatarAndTreasures(userInfo) {
   //userInfo =  {userName, what to change, updated info }
+  let url = baseUrl + `profiles/${userId}/`;
+  return fetch(url)
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      return data;
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });
 }
 
-export default { fetchData, editProfile, checkRegisteredUser };
+// to edit the username or password, the request must be sent to the users endpoint
+function editUsernameAndPassword(userInfo) {
+  let url = baseUrl + `users/${userId}/`;
+  return fetch(url)
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      return data;
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });
+}
+
+function getUserTreasureCollection(userId) {
+  let url = baseUrl + `profiles/${userId}/`;
+  return fetch(url)
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      return data;
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });
+}
+
+function getTreasureById(treasureId) {
+  let url = baseUrl + `treasures/${treasureId}/`;
+  return fetch(url)
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      return data;
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });
+}
+
+export default {
+  fetchData,
+  editProfile,
+  checkRegisteredUser,
+  getUserTreasureCollection,
+  getTreasureById,
+};

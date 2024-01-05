@@ -6,7 +6,7 @@ import Card from "../_lib/Card";
 import RequestCard from "../_lib/RequestCards";
 
 export default function Profile() {
-  const [avatar, setAvatar] = useState(<RxAvatar className="w-20 h-20" />);
+  const [avatar, setAvatar] = useState(<RxAvatar className='w-20 h-20' />);
   const [logInProtection, setLoginProtection] = useState(
     localStorage.getItem("user")
   );
@@ -38,8 +38,8 @@ export default function Profile() {
   return (
     <>
       {logInProtection ? (
-        <main className="w-full mt-2 flex flex-col mx-auto">
-          <div className="mx-auto">{avatar}</div>
+        <main className='w-full mt-2 flex flex-col mx-auto'>
+          <div className='mx-auto'>{avatar}</div>
           {/* <button className='w-1/4 text-center mx-auto mt-1 px-2 py-1 tracking-wide text-white transition-colors duration-200 transform bg-gray-800 rounded hover:bg-gray-600 focus:outline-none focus:bg-gray-600'>
         Change avatar
       </button> */}
