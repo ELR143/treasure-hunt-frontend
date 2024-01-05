@@ -1,8 +1,7 @@
-import fetchData from "@/utils/api";
+import api from "@/utils/api";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { RxAvatar } from "react-icons/rx";
-
 
 export default function LoginCard({
   defaultPageInfo: {
@@ -11,10 +10,9 @@ export default function LoginCard({
     secondFormDescription,
   },
   pageName,
-  setPageName
+  setPageName,
 }) {
-  // const [user, setUser] = useState({username: 'default_user'});
-  const [username, setUsername] = useState('')
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const router = useRouter();
@@ -22,13 +20,18 @@ export default function LoginCard({
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (firstFormButtonName === 'Login') {
-      console.log('send get request')
-    } else if (firstFormButtonName === 'Sign Up') {
-      console.log('send a get and a post request?')
+    if (firstFormButtonName === "Login") {
+      console.log("send get request");
+      api.checkRegisteredUser().then((res)=>{
+        //if res = true
+         localStorage.setItem("user", username);
+          router.push("/home");
+      })
+    } else if (firstFormButtonName === "Sign Up") {
+      console.log("send a get and a post request?");
     }
-    localStorage.setItem('user', username)
-    router.push('/home')
+    // localStorage.setItem("user", username);
+    // router.push("/home");
     setUsername("");
     setPassword("");
     setIsSubmitted(true);
@@ -45,49 +48,49 @@ export default function LoginCard({
 
   useEffect(() => {
     if (isSubmitted) {
-      fetchData();
+      api.fetchData();
     }
   }, [isSubmitted]);
 
   return (
     <>
       <form
-        className='w-full max-w-md mx-auto bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden p-8 m-8'
+        className="w-full max-w-md mx-auto bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden p-8 m-8"
         onSubmit={handleSubmit}
       >
         <input
-          className='w-full px-4 py-2 mt-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none dark:text-gray-300 dark:bg-gray-700'
-          type='text'
-          placeholder='Username...'
+          className="w-full px-4 py-2 mt-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none dark:text-gray-300 dark:bg-gray-700"
+          type="text"
+          placeholder="Username..."
           value={username}
           required
           onChange={(e) => setUsername(e.target.value)}
         />
 
         <input
-          className='w-full px-4 py-2 mt-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none dark:text-gray-300 dark:bg-gray-700'
-          type='password'
-          placeholder='Password...'
+          className="w-full px-4 py-2 mt-2 text-gray-700 bg-gray-200 rounded-lg focus:outline-none dark:text-gray-300 dark:bg-gray-700"
+          type="password"
+          placeholder="Password..."
           value={password}
           required
           onChange={(e) => setPassword(e.target.value)}
         />
-        <div className='mb-4 mt-4'>
+        <div className="mb-4 mt-4">
           <button
-            className='w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-gray-800 rounded hover:bg-gray-600 focus:outline-none focus:bg-gray-600'
-            type='submit'
+            className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-gray-800 rounded hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
+            type="submit"
           >
             {firstFormButtonName}
           </button>
         </div>
       </form>
 
-      <form className='w-full max-w-md mx-auto bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden p-8'>
+      <form className="w-full max-w-md mx-auto bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden p-8">
         <p>{secondFormDescription}</p>
-        <div className='mb-4 mt-4'>
+        <div className="mb-4 mt-4">
           <button
-            className='w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-gray-800 rounded hover:bg-gray-600 focus:outline-none focus:bg-gray-600'
-            type='submit'
+            className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-gray-800 rounded hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
+            type="submit"
             onClick={handleClick}
           >
             {secondFormButtonName}

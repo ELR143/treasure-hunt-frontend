@@ -3,7 +3,6 @@
 import LoginCard from "./_lib/LoginCard";
 import { useState, useEffect } from "react";
 
-
 export default function Home() {
   const pageInfo = {
     login: {
@@ -22,7 +21,6 @@ export default function Home() {
 
   const [defaultPageInfo, setDefaultPageInfo] = useState(pageInfo.login);
   const [pageName, setPageName] = useState("Login");
-
   const [user, setUser] = useState();
 
   useEffect(() => {
@@ -33,18 +31,14 @@ export default function Home() {
     }
   }, [pageName]);
 
-  useEffect(() => {
-    setPageName("Login");
-  }, []);
-
   return (
-      <main>
-      <section className='w-full h-screen bg-cover bg-center flex flex-col items-center justify-center'>
-        <div className='px-6 py-4 mb-2'>
-          <h2 className='text-3xl font-bold text-center'>
+    <main>
+      <section className="w-full h-screen bg-cover bg-center flex flex-col items-center justify-center">
+        <div className="px-6 py-4 mb-2">
+          <h2 className="text-3xl font-bold text-center">
             {defaultPageInfo.title}
           </h2>
-          <p className='text-gray-600 dark:text-gray-200 text-sm text-center'>
+          <p className="text-gray-600 dark:text-gray-200 text-sm text-center">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos at
             cumque eos repudiandae itaque a. Laudantium, molestias! Neque
             sapiente veritatis iusto quis doloremque? Fuga amet at eveniet
@@ -61,13 +55,3 @@ export default function Home() {
     </main>
   );
 }
-
-// export default function Home() {
-//   return (
-//     <>
-//       {/* <LoginSignUp /> */}
-
-//       {/* <HomePage /> */}
-//     </>
-//   );
-// }
