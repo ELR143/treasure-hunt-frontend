@@ -1,11 +1,11 @@
 const baseUrl = "https://treasure-hunt-backend-test.onrender.com/";
 
+// /users requests
 function fetchData() {
   let url = baseUrl + `users/`;
   return fetch(url)
     .then((res) => {
-      const item = res.json();
-      return item;
+      return res.json();
     })
     .then((data) => {
       return data;
@@ -27,20 +27,18 @@ function checkRegisteredUser(userName, userPassword) {
       if (userName === data[0].username) {
         return data;
       } else {
-        console.log('aefekjasudfakiej')
+        console.log("aefekjasudfakiej");
         // error? route to the page but with the 'Please log in' thing?
       }
     })
     .catch((error) => {
       console.error("Error fetching data:", error);
     });
-
 }
 
-// to edit the avatar or treasures, the request must be sent to the profiles endpoint
-function editAvatarAndTreasures(userInfo) {
-  //userInfo =  {userName, what to change, updated info }
-  let url = baseUrl + `profiles/${userId}/`;
+// to edit the username or password, the request must be sent to the users endpoint
+function editUsernameAndPassword(userInfo) {
+  let url = baseUrl + `users/${userId}/`;
   return fetch(url)
     .then((res) => {
       return res.json();
@@ -53,9 +51,11 @@ function editAvatarAndTreasures(userInfo) {
     });
 }
 
-// to edit the username or password, the request must be sent to the users endpoint
-function editUsernameAndPassword(userInfo) {
-  let url = baseUrl + `users/${userId}/`;
+// /profiles requests
+// to edit the avatar or treasures, the request must be sent to the profiles endpoint
+function editAvatarAndTreasures(userInfo) {
+  //userInfo =  {userName, what to change, updated info }
+  let url = baseUrl + `profiles/${userId}/`;
   return fetch(url)
     .then((res) => {
       return res.json();
@@ -82,6 +82,7 @@ function getUserTreasureCollection(userId) {
     });
 }
 
+// /treasures requests
 function getTreasureById(treasureId) {
   let url = baseUrl + `treasures/${treasureId}/`;
   return fetch(url)
@@ -96,10 +97,87 @@ function getTreasureById(treasureId) {
     });
 }
 
+function getAllTreasures() {
+  let url = baseUrl + `treasures/`;
+  return fetch(url)
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      return data;
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });
+}
+
+function postLogin(username, password) {
+  const url = baseUrl + "login";
+  const reqBody = { username: username, password: password };
+  const postObject = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(reqBody),
+  };
+  return fetch(url, postObject)
+    .then((res) => {
+      return res;
+    })
+    .catch((error) => {
+      return error;
+    });
+}
+
+function postNewUser(username, password) {
+  const url = baseUrl + "users/";
+  const reqBody = { username: username, password: password };
+  const postObject = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(reqBody),
+  };
+  return fetch(url, postObject)
+    .then((res) => {
+      return res;
+    })
+    .catch((error) => {
+      return error;
+    });
+}
+
+function editProfile(userInfo, tableName, id) {
+  let url = `${baseUrl}${tableName}/${id}/`;
+  return fetch(url, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(userInfo),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      console.error("Error during fetch operation:", error);
+    });
+}
+
 export default {
   fetchData,
-  editProfile,
+  editAvatarAndTreasures,
+  editUsernameAndPassword,
   checkRegisteredUser,
   getUserTreasureCollection,
   getTreasureById,
+  getAllTreasures,
+  postLogin,
+  postNewUser,
+  editProfile
 };

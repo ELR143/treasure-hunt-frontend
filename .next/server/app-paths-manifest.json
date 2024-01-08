@@ -1,7 +1,8 @@
 {
   "/page": "app/page.js",
   "/map/page": "app/map/page.js",
-  "/collection/page": "app/collection/page.js",
   "/home/page": "app/home/page.js",
-  "/profile/page": "app/profile/page.js"
+  "/profile/page": "app/profile/page.js",
+  "/collection/page": "app/collection/page.js",
+  "/leaderboard/page": "app/leaderboard/page.js"
 }

@@ -1,7 +1,6 @@
 import api from "@/utils/api";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { RxAvatar } from "react-icons/rx";
 
 export default function LoginCard({
   defaultPageInfo: {
@@ -15,23 +14,47 @@ export default function LoginCard({
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errMsg, setErrMsg] = useState("");
   const router = useRouter();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (firstFormButtonName === "Login") {
-      console.log("send get request");
-      api.checkRegisteredUser(username, password).then((res) => {
-        //if res = true
-        //  localStorage.setItem("user", username);
-        //   router.push("/home");
+      api.postLogin(username, password).then((res) => {
+        if(res.ok === true){
+          api.fetchData().then(res =>{
+            const UserDetails = res.filter(user =>{
+              return user.username === username
+            })
+            localStorage.setItem("user", username);
+            localStorage.setItem("user_id",UserDetails[0].id);
+            router.push("/home");
+          })
+        } else if (res.ok === false) {
+          setErrMsg("Invalid username or password");
+        }
+      }).catch (err => {
+        console.log(err)
       });
     } else if (firstFormButtonName === "Sign Up") {
-      console.log("send a get and a post request?");
+      api.postNewUser(username, password).then((res) => {
+        if(res.ok === true){
+          api.fetchData().then(res =>{
+            const UserDetails = res.filter(user =>{
+              return user.username === username
+            })
+            localStorage.setItem("user", username);
+            localStorage.setItem("user_id", UserDetails[0].id)
+            router.push("/home");
+          })
+        } else if (res.ok === false) {
+          setErrMsg("That username is already taken");
+        }
+      }).catch(err => {
+        console.log(err)
+      });
     }
-    localStorage.setItem("user", username);
-    router.push("/home");
     setUsername("");
     setPassword("");
     setIsSubmitted(true);
@@ -45,12 +68,6 @@ export default function LoginCard({
       setPageName("Sign Up");
     }
   };
-
-  useEffect(() => {
-    if (isSubmitted) {
-      api.fetchData();
-    }
-  }, [isSubmitted]);
 
   return (
     <>
@@ -74,8 +91,11 @@ export default function LoginCard({
           value={password}
           required
           onChange={(e) => setPassword(e.target.value)}
+          pattern="^(?=.*\d)[A-Za-z\d]{8,16}$"
+          title="Password must be at least 8 characters long and contain a number."
         />
         <div className="mb-4 mt-4">
+          <p>{errMsg}</p>
           <button
             className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-gray-800 rounded hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
             type="submit"

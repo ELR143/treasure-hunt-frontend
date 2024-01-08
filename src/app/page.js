@@ -25,9 +25,9 @@ export default function Home() {
 
   useEffect(() => {
     if (pageName === "Sign Up") {
-      setDefaultPageInfo(pageInfo.login);
-    } else if (pageName === "Login") {
       setDefaultPageInfo(pageInfo.signup);
+    } else if (pageName === "Login") {
+      setDefaultPageInfo(pageInfo.login);
     }
   }, [pageName]);
 
