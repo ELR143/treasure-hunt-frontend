@@ -31,6 +31,7 @@ export default function LoginCard({
       console.log("send a get and a post request?");
     }
     localStorage.setItem("user", username);
+    localStorage.setItem("user_id", 1);
     router.push("/home");
     setUsername("");
     setPassword("");

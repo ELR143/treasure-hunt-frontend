@@ -1,4 +1,3 @@
-import api from "@/utils/api";
 import { useState } from "react";
 import Form from "./Form";
 
@@ -6,15 +5,15 @@ export default function RequestCard({ profileRequest }) {
   const [showForm, setShowForm] = useState(false);
   const [userInfoToBeProvidedToForm, setUserInfoToBeProvidedToForm] = useState({
     keyToBeUpdated: profileRequest.infoToChange,
-    valueToBeUpdated: "",
-    user: localStorage.getItem("user"),
   });
-  const userRequestToServerHandler = () => {
-    console.log("request has been received: ", profileRequest.infoToChange);
-    setShowForm(true);
+  const [userNotification, setUserNotification] = useState(false);
+  const userRequestToServerHandler = (e) => {
+    if (e.target.tagName === "LI" && showForm) {
+      setShowForm(false);
+    } else if (e.target.tagName === "LI" && !showForm) {
+      setShowForm(true);
+    }
   };
-
-  useState(() => {}, [showForm]);
 
   return (
     <>
@@ -23,10 +22,16 @@ export default function RequestCard({ profileRequest }) {
         onClick={userRequestToServerHandler}
       >
         {profileRequest.name}
+
+        {showForm ? (
+          <Form
+            form={userInfoToBeProvidedToForm}
+            setShowForm={setShowForm}
+            setUserNotification={setUserNotification}
+          />
+        ) : null}
+        {userNotification ? <p>submitted</p> : <></>}
       </li>
-      {showForm ? (
-        <Form form={userInfoToBeProvidedToForm} setShowForm={setShowForm} />
-      ) : null}
     </>
   );
 }
