@@ -175,9 +175,10 @@
 
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import { Circle, GoogleMap, LoadScript, Marker, useJsApiLoader } from "@react-google-maps/api";
 import { MarkerClusterer } from "@react-google-maps/api";
 import api from "@/utils/api";
+import { Inconsolata } from "next/font/google";
 
 const containerStyle = {
   width: "100%",
@@ -186,6 +187,7 @@ const containerStyle = {
 
 const options = {
   streetViewControl: false,
+  // draggable: 
 };
 
 const GoogleMapComponent = () => {
@@ -199,10 +201,25 @@ const GoogleMapComponent = () => {
   const [treasureLocations, setTreasureLocations] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [watchingPosition, setWatchingPosition] = useState(true);
-  const [mapZoom, setMapZoom] = useState(17);
+  const [mapZoom, setMapZoom] = useState(15);
   const [firstLoad, setFirstLoad] = useState(true)
+  const [theMap, setTheMap] = useState(null)
 
   // if the user scans and they are within the circle, a collect button appears
+
+  const icons = {
+    treasure: {
+      url: "/treasure.png",
+      scaledSize: { width: 50, height: 50 },
+    },
+    user: { url: "/user.png", scaledSize: { width: 50, height: 50 } },
+    cluster: { url: "/magikarp.png", scaledSize: { width: 50, height: 50 } }
+  };
+
+  const { isLoaded } = useJsApiLoader({
+        id: "google-map-script",
+        googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
+      });
 
   useEffect(() => {
     if (watchingPosition) {
@@ -214,6 +231,11 @@ const GoogleMapComponent = () => {
           };
           setUserLocation(userLatLng);
         });
+        if (firstLoad === false){
+          theMap.setOptions({
+            draggable: false
+          })
+        }
       }
     } else {
       if (navigator.geolocation) {
@@ -224,6 +246,11 @@ const GoogleMapComponent = () => {
           };
           setUserLocation(userLatLng);
         });
+        if (firstLoad === false){
+          theMap.setOptions({
+            draggable: true
+          })
+        }
       }
     }
   }, [watchingPosition]);
@@ -259,9 +286,11 @@ const GoogleMapComponent = () => {
 
       distancesMatrix.rows[0].elements.map(
         (element, i) => {
+          console.log(element)
           treasureLocations[i].distances = element.distance.value
-          if (element.distance.value <=600) {
+          if (element.distance.value <= 600) {
             setIsInRange(true)
+            treasureLocations[i].inRange = true
           }
         }
         );
@@ -272,8 +301,8 @@ const GoogleMapComponent = () => {
     }
   };
 
-  const handleCollect = () => {
-    setCollected(treasure.id);
+  const handleCollect = (id) => {
+    console.log("treasure id", id)
   };
 
   const handleToggleWatchPosition = () => {
@@ -284,18 +313,15 @@ const GoogleMapComponent = () => {
 
   const handleZoomChanged = () => {
     if (firstLoad === false) {
-      setMapZoom(mapRef.current.state.map.zoom)
+      setMapZoom(theMap.zoom)
+      console.log(theMap.zoom);
     } else {
       setFirstLoad(false)
     }
-    console.log(mapZoom)
   };
 
-  return (
-    <LoadScript
-      googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}
-      onLoad={() => console.log("Google Maps API loaded")}
-    >
+  return isLoaded ? (
+    <>
       <button
         className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full'
         onClick={handleScan}
@@ -328,26 +354,86 @@ const GoogleMapComponent = () => {
         zoom={mapZoom}
         options={options}
         onZoomChanged={handleZoomChanged}
+        onLoad={(map)=>{
+          setTheMap(map)
+        }}
+        onUnmount={()=>{
+          window.google.maps.event.clearInstanceListeners(theMap)
+          setTheMap(null)
+          console.log("unmounting")
+        }}
       >
-        <Marker position={userLocation} />
-        <MarkerClusterer gridSize={500}>
+        <Marker position={userLocation} icon={icons.user}/>
+        <MarkerClusterer gridSize={300}>
           {(clusterer) =>
-            treasureLocations.map((treasure) =>
-              mapZoom >= 16 ? null : (
-                <Marker
+            treasureLocations.map((treasure) => {
+              console.log("treasure", treasure)
+              if (mapZoom >= 16 && !treasure.inRange) {
+                //zoomed in and not scanned; should be circle
+                return <Circle
+                  key={"circle"+treasure.id}
+                  center={treasure}
+                  radius={20}
+                  options={{
+                    strokeColor: "#FF0000",
+                    strokeOpacity: 0.8,
+                    strokeWeight: 2,
+                    fillColor: "#FF0000",
+                    fillOpacity: 0.35,
+                  }}
+                />
+              } else if (mapZoom >= 16 && treasure.inRange) {
+                //zoomed in and scanned; should be marker
+                return <Marker
                   key={treasure.id}
                   position={treasure}
+                  icon={icons.treasure}
+                  clusterer={clusterer}
+                  value={treasure.id}
+                  onClick={() => {
+                    handleCollect(treasure.id)
+                  }}
+                />
+              } else {
+                //zoomed out; should be clustered
+                return <Marker
+                  key={treasure.id}
+                  position={treasure}
+                  icon={icons.cluster}
                   clusterer={clusterer}
                   value={treasure.id}
                   onClick={handleCollect}
                 />
-              )
-            )
+              }
+            //   return mapZoom >= 16 && treasure.inRange != true ? (
+            //     <Circle
+            //       key={"circle"+treasure.id}
+            //       center={treasure}
+            //       radius={20}
+            //       options={{
+            //         strokeColor: "#FF0000",
+            //         strokeOpacity: 0.8,
+            //         strokeWeight: 2,
+            //         fillColor: "#FF0000",
+            //         fillOpacity: 0.35,
+            //       }}
+            //     />
+            //   ) : (
+            //       <Marker
+            //         key={treasure.id}
+            //         position={treasure}
+            //         icon={icons.treasure}
+            //         clusterer={clusterer}
+            //         value={treasure.id}
+            //         onClick={handleCollect}
+            //       />
+            // )
           }
+          )}
         </MarkerClusterer>
       </GoogleMap>
-    </LoadScript>
-  );
+    </>
+  ) : <h1>not loaded lmao</h1>
 };
 
 export default GoogleMapComponent;
