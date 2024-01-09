@@ -169,6 +169,36 @@ function editProfile(userInfo, tableName, id) {
     });
 }
 
+function getAllProfiles() {
+  let url = `${baseUrl}users`;
+  const pendingUsers = fetch(url);
+
+  url = `${baseUrl}profiles`;
+  const pendingProfiles = fetch(url);
+
+  return Promise.all([pendingProfiles, pendingUsers])
+    .then((responses) =>
+      Promise.all(responses.map((response) => response.json()))
+    )
+    .then((res) => {
+      const [profiles, users] = res;
+      const usersIdAndNameArray = users.reduce((acc, item) => {
+        const id = item.id;
+        acc[id] = item.username;
+        return acc;
+      }, {});
+
+      return profiles.map((profile) => {
+        const id = profile.user_id;
+        profile.user_name = usersIdAndNameArray[id];
+        return profile;
+      });
+    })
+    .catch((error) => {
+      console.error("Error during fetch operation:", error);
+    });
+}
+
 export default {
   fetchData,
   editAvatarAndTreasures,
@@ -179,5 +209,6 @@ export default {
   getAllTreasures,
   postLogin,
   postNewUser,
-  editProfile
+  editProfile,
+  getAllProfiles,
 };
