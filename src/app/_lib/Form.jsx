@@ -19,12 +19,6 @@ export default function Form({
     setInputEnter(e.target.value);
     e.target.value ? setIsDisabled(false) : setIsDisabled(true);
   };
-  const handleChange = (e) => {
-    const formData = new FormData();
-    formData.append("avatar", e.target.files[0]);
-    // const image = URL.createObjectURL(e.target.files[0]);
-    setInputEnter(formData);
-  };
 
   const submitFormHandler = (e) => {
     e.preventDefault();
@@ -36,13 +30,7 @@ export default function Form({
     const updatedProfileInfo = {
       [keyToBeUpdated]: inputEnter,
     };
-    let tableToBeUpdated;
-
-    if (keyToBeUpdated === "username" || keyToBeUpdated === "password") {
-      tableToBeUpdated = "users";
-    } else if (keyToBeUpdated === "avatar") {
-      tableToBeUpdated = "profiles";
-    }
+    let tableToBeUpdated = "users";
 
     api.editProfile(updatedProfileInfo, tableToBeUpdated, user_id).then(() => {
       if (keyToBeUpdated === "username") {
@@ -55,36 +43,38 @@ export default function Form({
   };
 
   return (
-    <form action="POST" onSubmit={submitFormHandler} className="flex flex-col mt-1">
-      {keyToBeUpdated === "avatar" ? (
-        <label onChange={handleChange}>
-          <input
-            type="file"
-            placeholder={`please enter new ${keyToBeUpdated}`}
-          />
-        </label>
-      ) : (
-        <>
-        <input
-          className="pl-1 rounded mr-1 text-red-500 font-bold resize w-full h-8 "
-          type="text"
-          placeholder={`please enter new ${keyToBeUpdated}`}
-          onChange={handleInputChange}
-          value={inputEnter}
-          pattern="^(?=.*\d)[A-Za-z\d]{8,16}$"
-          title="Password must be at least 8 characters long and contain a number."
-          />
-        </>
-      )}
+    <form
+      action="POST"
+      onSubmit={submitFormHandler}
+      className="flex flex-col mt-1"
+    >
+      <input
+        className="pl-1 rounded mr-1 text-red-500 font-bold resize w-full h-8 "
+        type="text"
+        placeholder={`please enter new ${keyToBeUpdated}`}
+        onChange={handleInputChange}
+        value={inputEnter}
+        pattern={
+          keyToBeUpdated === "password" ? "^(?=.*d)[A-Za-zd]{8,16}$" : null
+        }
+        title={
+          keyToBeUpdated === "password"
+            ? "Password must be at least 8 characters long and contain a number."
+            : null
+        }
+      />
+
       <button
         disabled={isDisabled}
         className={`${buttonClasses} ${
           isDisabled ? "" : " bg-gray-800 hover:bg-green-600 cursor-pointer "
         }`}
-        >
+      >
         Update
       </button>
-      {keyToBeUpdated === 'password' ? <p>Your password must contain at least 1 number</p> : null}
+      {keyToBeUpdated === "password" ? (
+        <p>Your password must contain at least 1 number</p>
+      ) : null}
     </form>
   );
 }

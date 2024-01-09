@@ -1,4 +1,4 @@
-// File: /home/elr143/northcoders/treasure-hunt/treasure-hunt-frontend/src/app/profile/layout.js
+// File: /home/alina/northcoders/final-project/treasure-hunt-frontend/src/app/profile/layout.js
 import * as entry from '../../../../src/app/profile/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

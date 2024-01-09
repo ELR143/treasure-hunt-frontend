@@ -22,7 +22,6 @@ export default function Profile() {
   ];
 
   const profileRequests = [
-    { name: "Change avatar", serverRequest: "patch", infoToChange: "avatar" },
     {
       name: "Change username",
       serverRequest: "patch",
