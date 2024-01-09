@@ -55,7 +55,7 @@ export default function Form({
         onChange={handleInputChange}
         value={inputEnter}
         pattern={
-          keyToBeUpdated === "password" ? "^(?=.*d)[A-Za-zd]{8,16}$" : null
+          keyToBeUpdated === "password" ? "^(?=.*d)[A-Za-zd]{8,16}$" : '^(?=.*d)[A-Za-z\d/]{5,16}$'
         }
         title={
           keyToBeUpdated === "password"
