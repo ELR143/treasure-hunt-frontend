@@ -18,10 +18,8 @@ export default function Leaderboard() {
   }, []);
 
   useEffect(() => {
-    // console.log("FILTER By:", filter);
     const [filterOption, sortBy] = filter.split("-");
-    // console.log(filterOption, sortBy);
-    // console.log(leaders, "LEADERS");
+
     if (leaders && leaders.length > 0) {
       const sortedLeaders = [...leaders].sort((a, b) => {
         return sortBy === "asc"
@@ -29,7 +27,6 @@ export default function Leaderboard() {
           : b[filterOption] - a[filterOption];
       });
       setLeaders(sortedLeaders);
-      //   console.log(sortedLeaders, "LEADERS");
     }
   }, [filter]);
 

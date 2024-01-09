@@ -182,7 +182,7 @@ function getAllProfiles() {
     )
     .then((res) => {
       const [profiles, users] = res;
-      const usersIdAndNameArray = users.reduce((acc, item) => {
+      const usersIdAndNameObj = users.reduce((acc, item) => {
         const id = item.id;
         acc[id] = item.username;
         return acc;
@@ -190,7 +190,7 @@ function getAllProfiles() {
 
       return profiles.map((profile) => {
         const id = profile.user_id;
-        profile.user_name = usersIdAndNameArray[id];
+        profile.user_name = usersIdAndNameObj[id];
         return profile;
       });
     })
