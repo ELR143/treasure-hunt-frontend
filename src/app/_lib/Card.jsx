@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Link from "next/link";
+import Reveal from "./Reveal";
 
 export default function Card({ cardHeading: { name, href, isProtected } }) {
   // const userFromLocalStorage = localStorage.getItem("user");
@@ -9,14 +10,16 @@ export default function Card({ cardHeading: { name, href, isProtected } }) {
 
   return (
     <>
-      <li className="w-full justify-center mt-2 flex">
-        <Link
-          href={href}
-          className="w-1/2 text-center px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-gray-800 rounded hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
-        >
-          {name}
-        </Link>
-      </li>
+      <Reveal>
+        <li className="  w-screen justify-center mt-4 flex">
+          <Link
+            href={href}
+            className=" text-center w-1/2 px-4 py-2 text-white transition-colors duration-200 transform bg-gray-800 rounded hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
+          >
+            {name}
+          </Link>
+        </li>
+      </Reveal>
     </>
   );
 }

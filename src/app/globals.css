@@ -38,6 +38,7 @@ body {
   padding: 10px;
   transition: all 500ms;
   margin: 10px;
+  
 }
 
 .find {
@@ -50,4 +51,10 @@ body {
 .button:hover {
   cursor: pointer;
   transform: scale(1.1);
+}
+
+line {
+  stroke-width: 10px;
+  stroke-linecap: round;
+  fill: transparent;
 }

@@ -2,9 +2,7 @@
 import { useEffect, useState } from "react";
 import api from "@/utils/api";
 import CollectionCard from "../_lib/CollectionCard";
-
-
-
+import Xmarks from "../_lib/Xmarks";
 
 export default function Collection() {
   const [isLoading, setIsLoading] = useState(true);
@@ -12,7 +10,7 @@ export default function Collection() {
 
   useEffect(() => {
     api
-      .getUserTreasureCollection(1)
+      .getUserTreasureCollection(90)
       .then((response) => {
         const treasures = response.treasures;
         return treasures;
@@ -24,16 +22,24 @@ export default function Collection() {
         return Promise.all(promisedTreasuresArray);
       })
       .then((treasuresArray) => {
-        setIsLoading(false)
-        setTreasures(treasuresArray)
-    })
-    .catch((error) => {
+        setIsLoading(false);
+        setTreasures(treasuresArray);
+      })
+      .catch((error) => {
         console.log(error);
-    });
-}, []);
+      });
+  }, []);
 
-  if(isLoading) {
-    return <h1>Loading, please wait...</h1>
+  if (isLoading) {
+    return (
+      <div className="relative w-screen  h-screen">
+      <img className=" mx-auto w-96 mt-10 z-0" src="/Loginmap.svg" alt="Map" />
+      <div className="absolute top-0 left-0 mt-10 right-0 z-10 w-80 mx-auto flex flex-col items-center justify-center">
+      <p className="mt-20 text-xl text-red-600 animate-bounce">Loading Treasure Collection</p>
+        <Xmarks className="animate-bounce" /> 
+      </div>
+    </div>
+    );
   }
   return (
     <main className="bg-slate-50 h-full">

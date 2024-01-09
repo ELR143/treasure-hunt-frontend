@@ -46,7 +46,7 @@ export default function Form({
     <form
       action="POST"
       onSubmit={submitFormHandler}
-      className="flex flex-col mt-1"
+      className="flex flex-col w-full mt-1"
     >
       <input
         className="pl-1 rounded mr-1 text-red-500 font-bold resize w-full h-8 "

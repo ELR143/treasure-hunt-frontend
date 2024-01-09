@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Form from "./Form";
+import Reveal from "./Reveal";
 
 export default function RequestCard({ profileRequest }) {
   const [showForm, setShowForm] = useState(false);
@@ -16,9 +17,9 @@ export default function RequestCard({ profileRequest }) {
   };
 
   return (
-    <>
+    <Reveal>
       <li
-        className="w-1/2 mx-auto cursor-pointer text-center mt-2 px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-gray-800 rounded hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
+        className="cursor-pointer mx-auto w-1/2 text-center mt-4 px-4 py-2 text-white transition-colors duration-200 transform bg-gray-800 rounded hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
         onClick={userRequestToServerHandler}
       >
         {profileRequest.name}
@@ -32,6 +33,6 @@ export default function RequestCard({ profileRequest }) {
         ) : null}
         {userNotification ? <p>submitted</p> : <></>}
       </li>
-    </>
+    </Reveal>
   );
 }

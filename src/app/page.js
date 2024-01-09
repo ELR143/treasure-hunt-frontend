@@ -3,6 +3,8 @@
 import LoginCard from "./_lib/LoginCard";
 import { useState, useEffect } from "react";
 
+
+
 export default function Home() {
   const pageInfo = {
     login: {
@@ -33,17 +35,19 @@ export default function Home() {
 
   return (
     <main>
-      <section className="w-full h-screen bg-cover bg-center flex flex-col items-center justify-center">
-        <div className="px-6 py-4 mb-2">
-          <h2 className="text-3xl font-bold text-center">
-            {defaultPageInfo.title}
-          </h2>
-          <p className="text-gray-600 dark:text-gray-200 text-sm text-center">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos at
-            cumque eos repudiandae itaque a. Laudantium, molestias! Neque
-            sapiente veritatis iusto quis doloremque? Fuga amet at eveniet
-            cumque maiores perspiciatis.
+      <section className="w-screen h-screen bg-cover bg-center text-teal-600 flex flex-col items-center justify-center">
+        <div className="px-6 py-4 mt-4">
+          
+          <h1 className=" text-3xl md:text-5xl font-bold text-center">
+            TREASURE HUNTERS
+          </h1>
+          <div className="w-3/4 mx-auto">
+
+         
+          <p className="text-gray-700 mt-6 text-lg text-center">
+          "Embark on a Journey Where You Just Find Treasure – TREASURE HUNTERS Makes Every Discovery an Adventure!"
           </p>
+          </div>
         </div>
         <LoginCard
           defaultPageInfo={defaultPageInfo}
@@ -51,6 +55,7 @@ export default function Home() {
           setPageName={setPageName}
           setUser={setUser}
         />
+      
       </section>
     </main>
   );

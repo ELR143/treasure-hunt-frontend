@@ -9,6 +9,7 @@ import { GrTrophy } from "react-icons/gr";
 import { LiaMoneyCheckAltSolid } from "react-icons/lia";
 import { LiaUniversitySolid } from "react-icons/lia";
 import { LiaFeatherSolid } from "react-icons/lia";
+import Reveal from "./Reveal";
 
 const iconLookup = {
   1: <GiGems />,
@@ -24,22 +25,23 @@ const iconLookup = {
 };
 
 export default function CollectionCard({ treasure }) {
-    const lastDigit = treasure.id % 10;
-    const icon = iconLookup[lastDigit];
+  const lastDigit = treasure.id % 10;
+  const icon = iconLookup[lastDigit];
 
-    const [isHovered, setIsHovered] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
-    const handleMouseEnter = () => {
-      setIsHovered(true);
-    };
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
 
-    const handleMouseLeave = () => {
-      setIsHovered(false);
-    };
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
 
-    return (
+  return (
+    <Reveal >
       <div
-        className="relative bg-white rounded-lg overflow-hidden shadow-md p-4 group"
+        className="relative bg-white rounded-lg overflow-hidden w-full shadow-md p-4 group"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
@@ -63,5 +65,6 @@ export default function CollectionCard({ treasure }) {
           </div>
         )}
       </div>
-    );
-  }
+    </Reveal>
+  );
+}
