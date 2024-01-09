@@ -54,9 +54,7 @@ export default function Form({
         placeholder={`please enter new ${keyToBeUpdated}`}
         onChange={handleInputChange}
         value={inputEnter}
-        pattern={
-          keyToBeUpdated === "password" ? "^(?=.*d)[A-Za-zd]{8,16}$" : '^(?=.*d)[A-Za-z\d/]{5,16}$'
-        }
+        pattern={keyToBeUpdated === "password" ? "^(?=.*d).{8,16}$" : "^.{4,}$"}
         title={
           keyToBeUpdated === "password"
             ? "Password must be at least 8 characters long and contain a number."
