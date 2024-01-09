@@ -1,6 +1,0 @@
-{
-  "/leaderboard/page": "app/leaderboard/page.js",
-  "/home/page": "app/home/page.js",
-  "/collection/page": "app/collection/page.js",
-  "/map/page": "app/map/page.js"
-}
