@@ -228,6 +228,33 @@ function IncrementTreasureCollectedBy(treasure_id) {
     return response;
   })
 }
+function patchProfilefriends(user_id, friends) {
+  let url = baseUrl + "profiles/" + user_id + "/";
+  const reqBody = { friends: friends}
+  return fetch(url, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(reqBody),
+  })
+  .then((response) => {
+    return response.json();
+  })
+}
+function getUserByUserID(user_id){
+  const url = baseUrl +`users/${user_id}/`
+  return fetch(url)
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      return data;
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });
+}
 
 export default {
   fetchData,
@@ -242,5 +269,7 @@ export default {
   editProfile,
   getAllProfiles,
   patchProfileTreasure,
-  IncrementTreasureCollectedBy
+  IncrementTreasureCollectedBy,
+  patchProfilefriends,
+  getUserByUserID
 };

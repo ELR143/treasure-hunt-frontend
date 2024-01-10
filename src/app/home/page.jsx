@@ -8,6 +8,7 @@ export default function HomePage() {
     { name: "Map", href: "/map", isProtected: false },
     { name: "Treasure Collection", href: "/collection", isProtected: true },
     { name: "Profile", href: "/profile", isProtected: true },
+    {name:"Friends", href: "/friends",isProtected: true}
   ];
 
   return (
