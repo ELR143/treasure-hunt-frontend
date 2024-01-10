@@ -1,4 +1,5 @@
 import { Inter } from "next/font/google";
+import { AvatarContextProvider } from "./_lib/AvatarContext";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -15,7 +16,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <link href="https://api.fontshare.com/v2/css?f[]=tanker@400&display=swap" rel="stylesheet"></link>
         <link href="https://api.fontshare.com/v2/css?f[]=kalam@1&display=swap" rel="stylesheet"></link>
-        {children}
+        <AvatarContextProvider>{children}</AvatarContextProvider>
       </body>
     </html>
   );

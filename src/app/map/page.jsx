@@ -283,11 +283,7 @@ const GoogleMapComponent = () => {
             </GoogleMap>
             <section className="flex flex-row">
                 <button
-                    className={`bg-${
-                        watchingPosition ? "red" : "blue"
-                    }-500 hover:bg-${
-                        watchingPosition ? "red" : "blue"
-                    }-700 text-white font-bold py-2 px-4 rounded-full mx-auto `}
+                    className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mx-auto `}
                     onClick={handleToggleWatchPosition}
                 >
                     {watchingPosition

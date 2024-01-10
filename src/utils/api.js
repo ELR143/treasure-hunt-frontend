@@ -201,7 +201,7 @@ function getAllProfiles() {
 
 function patchProfileTreasure(user_id, userTreasure) {
   let url = baseUrl + "profiles/" + user_id + "/";
-  const reqBody = { treasures: userTreasure}
+  const reqBody = { treasures: userTreasure }
   return fetch(url, {
     method: "PATCH",
     headers: {
@@ -256,6 +256,40 @@ function getUserByUserID(user_id){
     });
 }
 
+function getAvatarNameFromApi(id) {
+  let url = `${baseUrl}profiles/${id}`;
+  return fetch(url)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      console.error("Error during fetch operation:", error);
+    });
+}
+
+function setAvatarNameToApi(id, avatarName) {
+  let url = `${baseUrl}profiles/${id}`;
+  return fetch(url, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(avatarName),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      console.error("Error during fetch operation:", error);
+    });
+}
+
 export default {
   fetchData,
   editAvatarAndTreasures,
@@ -271,5 +305,7 @@ export default {
   patchProfileTreasure,
   IncrementTreasureCollectedBy,
   patchProfilefriends,
-  getUserByUserID
+  getUserByUserID,
+  getAvatarNameFromApi,
+  setAvatarNameToApi
 };

@@ -2,8 +2,12 @@
 import { RxAvatar } from "react-icons/rx";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { useAvatarContext } from "./AvatarContext";
 
 export default function Header() {
+  const contextAvatar = useAvatarContext();
+  const [userAvatarName, setUserAvatarName] = useState("default");
+  const [avatar, setAvatar] = useState(contextAvatar[userAvatarName]);
   const [user, setUser] = useState("");
 
   useEffect(() => {
@@ -13,6 +17,16 @@ export default function Header() {
     }
   }, []);
 
+  useEffect(() => {
+    const avNameFromLS = localStorage.getItem("avatar_name");
+    if (!avNameFromLS){
+setAvatar(contextAvatar['default']);
+    } else
+      if (avNameFromLS !== "default") {
+        setAvatar(contextAvatar[avNameFromLS]);
+      }
+  }, [avatar]);
+
   return (
     <header className="flex flex-row w-full justify-between items-center h-10 px-5 py-10">
       <Link href="/home">
@@ -21,8 +35,8 @@ export default function Header() {
 
       <h1 className="md:text-5xl text-3xl">Welcome {user}!</h1>
 
-      <Link href="/profile">
-        <RxAvatar className="w-10 h-10" />
+      <Link href="/profile" className="w-10">
+        <avatar.avatar className="w-10 h-10" />
       </Link>
     </header>
   );
