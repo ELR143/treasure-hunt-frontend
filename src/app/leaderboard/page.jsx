@@ -34,7 +34,7 @@ export default function Leaderboard() {
   if (!isLoaded) return <p>Leaders are loading...</p>;
   return (
     <>
-      <main className="w-full mt-2 flex flex-col mx-auto h-full text-black">
+      <main className="w-full mt-2 flex flex-col mx-auto text-black h-screen  bg-gradient-to-b from-blue-300 font-k to-teal-300 bg-opacity-5">
         <Filter setFilter={setFilter} />
         <ul>
           {leaders.map((leader, i) => {

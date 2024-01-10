@@ -68,34 +68,36 @@ export default function Profile() {
     }
   }, [userAvatarName]);
 
-   return (
+  return (
     <>
       {logInProtection ? (
-        <main className=" mt-2 flex flex-col mx-auto">
-          <div className="mx-auto">
-            <avatar.avatar className="w-10 h-10" />
-          </div>
+        <main className="flex flex-col mx-auto h-screen w-screen font-kalam font-bold items-center justify-center bg-gradient-to-b from-blue-300 to-teal-300 ">
+          <div className="bg-[url('/pagenav.svg')] h-full bg-contain md:bg-center bg-no-repeat mx-auto drop-shadow-2xl mt-12 md:mt-4">
+            <div className="">
+              <avatar.avatar className=" mt-4 w-8 h-8 md:mt-16 md:w-16 md:h-16 mx-auto text-red-600 drop-shadow-lg" />
+            </div>
 
-          <ul className="mt-8">
-            {profileLinks.map((link, i) => {
-              return <Card key={i} cardHeading={link} />;
-            })}
-          </ul>
+            <ul className="mt-0 d:mt-8 drop-shadow-lg">
+              {profileLinks.map((link, i) => {
+                return <Card key={i} cardHeading={link} />;
+              })}
+            </ul>
 
-          <ul>
-            {profileRequests.map((request, i) => {
-              return <RequestCard key={i} profileRequest={request} />;
-            })}
-          </ul>
-          <div className=" mx-auto w-1/2 ">
+            <ul className="drop-shadow-lg">
+              {profileRequests.map((request, i) => {
+                return <RequestCard key={i} profileRequest={request} />;
+              })}
+            </ul>
 
-         <Reveal>
-            <button
-              onClick={logoutHandler}
-              className=" mt-8 text-center px-2 py-2 w-full text-white transition-colors duration-200 transform bg-gray-800 rounded hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
-            >
-              Logout
-            </button>
+            <Reveal>
+              <div className="w-screen drop-shadow-lg">
+                <button
+                  onClick={logoutHandler}
+                  className=" mt-4 text-center block mx-auto drop-shadow-lg w-1/2 md:w-1/3 text-xs md:text-xl px-2 py-2 text-white transition-colors  duration-200 transform bg-teal-500 rounded hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
+                >
+                  Logout
+                </button>
+              </div>
             </Reveal>
           </div>
         </main>
@@ -103,7 +105,7 @@ export default function Profile() {
         <div className="text-center mx-auto mt-2">
           <Link
             href={"/"}
-            className="w-1/2 text-center px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-gray-800 rounded hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
+            className="w-1/3 text-center px-4 py-2 tracking-wide text-white transition-colors text-xl duration-200 transform bg-teal-500 rounded hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
           >
             Go to login page
           </Link>
