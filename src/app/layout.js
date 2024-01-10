@@ -1,4 +1,5 @@
 import { Inter } from "next/font/google";
+import { AvatarContextProvider } from "./_lib/AvatarContext";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -12,7 +13,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <link rel="icon" href="/magikarp.png"></link>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <AvatarContextProvider>{children}</AvatarContextProvider>
+      </body>
     </html>
   );
 }

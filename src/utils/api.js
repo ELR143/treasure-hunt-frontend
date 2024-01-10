@@ -201,17 +201,16 @@ function getAllProfiles() {
 
 function patchProfileTreasure(user_id, userTreasure) {
   let url = baseUrl + "profiles/" + user_id + "/";
-  const reqBody = { treasures: userTreasure}
+  const reqBody = { treasures: userTreasure };
   return fetch(url, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(reqBody),
-  })
-  .then((response) => {
+  }).then((response) => {
     return response.json();
-  })
+  });
 }
 
 function IncrementTreasureCollectedBy(treasure_id) {
@@ -223,10 +222,43 @@ function IncrementTreasureCollectedBy(treasure_id) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(reqBody),
-  })
-  .then((response) => {
+  }).then((response) => {
     return response;
+  });
+}
+
+function getAvatarNameFromApi(id) {
+  let url = `${baseUrl}profiles/${id}`;
+  return fetch(url)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      console.error("Error during fetch operation:", error);
+    });
+}
+
+function setAvatarNameToApi(id, avatarName) {
+  let url = `${baseUrl}profiles/${id}`;
+  return fetch(url, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(avatarName),
   })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      console.error("Error during fetch operation:", error);
+    });
 }
 
 export default {
@@ -242,5 +274,7 @@ export default {
   editProfile,
   getAllProfiles,
   patchProfileTreasure,
-  IncrementTreasureCollectedBy
+  IncrementTreasureCollectedBy,
+  getAvatarNameFromApi,
+  setAvatarNameToApi,
 };
