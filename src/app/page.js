@@ -34,22 +34,22 @@ export default function Home() {
   }, [pageName]);
 
   return (
-    <main>
-      <section className="w-screen h-screen bg-cover bg-center text-teal-600 flex flex-col items-center justify-center">
-        <div className="px-6 py-4 mt-4">
+    <main className="bg-[url('/bk.svg')] bg-cover">
+      <section className="w-screen h-screen bg-[url('/bk.svg')] bg-cover bg-white text-teal-600 flex flex-col items-center justify-center">
+        <div className="bg-[url('/backgroundtitlemobile.svg')] drop-shadow-2xl w-11/12 md:w-full h-80 md:bg-[url('/Backgroundtitle.svg')] bg-center bg-contain bg-no-repeat mt-6">
           
-          <h1 className=" text-3xl md:text-5xl font-bold text-center">
-            TREASURE HUNTERS
+          <h1 className="font-tanker text-6xl md:text-8xl px-10 md:px-0 drop-shadow-md font-bold text-center mt-6">
+            TREASURE  HUNTERS
           </h1>
-          <div className="w-3/4 mx-auto">
+          <div className="md:w-3/4 w-2/3 mx-auto">
 
          
-          <p className="text-gray-700 mt-6 text-lg text-center">
+          <p className="text-gray-700 md:w-1/2  mx-auto w-full mt-2 pb-10 px-6 md:px-0 md:text-lg text-center text-sm drop-shadow-sm font-kalam">
           "Embark on a Journey Where You Just Find Treasure – TREASURE HUNTERS Makes Every Discovery an Adventure!"
           </p>
           </div>
         </div>
-        <LoginCard
+        <LoginCard 
           defaultPageInfo={defaultPageInfo}
           pageName={pageName}
           setPageName={setPageName}
