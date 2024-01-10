@@ -9,6 +9,7 @@ export default function HomePage() {
     { name: "Map", href: "/map", isProtected: false },
     { name: "Treasure Collection", href: "/collection", isProtected: true },
     { name: "Profile", href: "/profile", isProtected: true },
+    { name: "Treasure Preview", href: "/treasure", isProtected: true },
   ];
 
   return (

@@ -169,6 +169,36 @@ function editProfile(userInfo, tableName, id) {
     });
 }
 
+function patchProfileTreasure(user_id, userTreasure) {
+  let url = baseUrl + "profiles/" + user_id + "/";
+  const reqBody = { treasures: userTreasure}
+  return fetch(url, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(reqBody),
+  })
+  .then((response) => {
+    return response.json();
+  })
+}
+
+function IncrementTreasureCollectedBy(treasure_id) {
+  let url = baseUrl + "treasures/" + treasure_id + "/";
+  const reqBody = { increment_collected_by: true };
+  return fetch(url, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(reqBody),
+  })
+  .then((response) => {
+    return response;
+  })
+}
+
 export default {
   fetchData,
   editAvatarAndTreasures,
@@ -179,5 +209,7 @@ export default {
   getAllTreasures,
   postLogin,
   postNewUser,
-  editProfile
+  editProfile,
+  patchProfileTreasure,
+  IncrementTreasureCollectedBy
 };
