@@ -30,7 +30,7 @@ export default function Leaderboard() {
     }
   }, [filter]);
 
-  if (!isLoaded) return <p>Leaders are loading</p>;
+  if (!isLoaded) return <p>Leaders are loading...</p>;
   return (
     <>
       <main className="w-full mt-2 flex flex-col mx-auto h-full text-black">

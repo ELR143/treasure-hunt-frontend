@@ -10,7 +10,7 @@ export default function Collection() {
 
   useEffect(() => {
     api
-      .getUserTreasureCollection(90)
+      .getUserTreasureCollection(37)
       .then((response) => {
         const treasures = response.treasures;
         return treasures;

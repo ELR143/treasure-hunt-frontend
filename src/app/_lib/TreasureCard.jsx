@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import api from "@/utils/api";
+import { useRouter } from "next/navigation";
 
 export default function TreasureCard({ id }) {
   const [percent, setPercent] = useState(null);
+  const router = useRouter()
 
   const treasure_id = Number(id);
 
@@ -19,17 +21,19 @@ export default function TreasureCard({ id }) {
           (element, index) => element === res.treasures[index]
         );
         if (identicalArr) {
-          api.IncrementTreasureCollectedBy(treasure_id).then((res) => {
-            console.log(res);
-          });
+          return api.IncrementTreasureCollectedBy(treasure_id)
         }
-      });
+      }).then(()=>{
+        router.push("/collection")
+      }).catch((err)=>{
+        console.log(err);
+      })
     });
   };
 
-  const treasureRarity = () => {
+  const fetchTreasure = () => {
     return api.getTreasureById(treasure_id).then((res) => {
-      return res.collected_by;
+      return res;
     });
   };
 
@@ -40,10 +44,10 @@ export default function TreasureCard({ id }) {
   };
 
   const calcPercentageFound = (treasure_id) => {
-    Promise.all([treasureRarity(treasure_id), totalUsers()]).then(
-      ([collected_by, total_users]) => {
-        const percentageFound = Math.floor((collected_by / total_users) * 100);
-        setPercent(percentageFound);
+    Promise.all([fetchTreasure(treasure_id), totalUsers()]).then(
+      ([treasure, total_users]) => {
+        const percentageFound = Math.floor((treasure.collected_by / total_users) * 100);
+        setPercent(Math.floor((treasure.collected_by / total_users) * 100));
       }
     );
   };

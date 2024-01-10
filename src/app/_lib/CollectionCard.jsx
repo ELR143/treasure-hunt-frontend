@@ -60,7 +60,7 @@ export default function CollectionCard({ treasure }) {
         {isHovered && (
           <div className="absolute inset-0 bg-white bg-opacity-90 flex items-center justify-center text-center">
             <p className="text-sm text-gray-500">
-              Additional details: Lat:{treasure.lat} Lng:{treasure.lng}
+              Additional details: Lat:{treasure.lat}, Lng:{treasure.lng}, Collected by {treasure.collected_by - 1} other pirates
             </p>
           </div>
         )}
