@@ -3,7 +3,7 @@
 import api from '@/utils/api'
 import { useState } from 'react' 
 
-export default function FriendCard({leader,place,friendsArr}){
+export default function FriendCard({leader,place,friendsArr,setRefresh,refresh}){
     
     const user_id =
     typeof localStorage !== "undefined" && localStorage.getItem
@@ -23,8 +23,8 @@ export default function FriendCard({leader,place,friendsArr}){
        const removedObjIndex= friendsArr.findIndex(obj =>obj ===leader.id)
        const updatedObj =[...friendsArr]
        updatedObj.splice(removedObjIndex,1)
-       api.patchProfilefriends(user_id,updatedObj).then(res =>{
-        
+       api.patchProfilefriends(user_id ,updatedObj).then(res =>{
+        setRefresh(!refresh)
        })
        
       }

@@ -9,6 +9,8 @@ export default function FriendsPage( ){
     const [isLoaded, setIsLoaded] = useState(false);
     const [friendsArr,setFriendsArr] =useState([])
     const [friends,setFriends] =useState([])
+    const [refresh, setRefresh] = useState(false)
+    
 useEffect(()=>{
     api.getUserTreasureCollection(user_id).then(res =>{
         setFriendsArr(res.friends)
@@ -22,24 +24,23 @@ useEffect(()=>{
             }
           }
     })
-    
     setFriends(filteredProfiles)
       setIsLoaded(true)
     })
 },[isLoaded])
-useEffect(()=>{
-    
-},[friends])
-if(isLoaded){
-    return (<><ul>
-      {friends.map((friend,i)=>{
-        return <FriendCard key={friend.id} leader={friend} place={i} friendsArr ={friendsArr}/>
-      })
 
+useEffect(()=>{
+    setIsLoaded(false)
+},[refresh])
+
+if(isLoaded){
+    return (<ul>
+      {friends.map((friend,i)=>{
+        return <FriendCard key={friend.id} leader={friend} place={i} friendsArr ={friendsArr} setRefresh={setRefresh} refresh={refresh}/>
+      })
       }
     </ul>
-    
-    </>)
+    )
 }else{
     return <h2>Friends Loading...</h2>
 }}

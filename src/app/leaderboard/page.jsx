@@ -12,7 +12,8 @@ export default function Leaderboard() {
 
   useEffect(() => {
     api.getAllProfiles().then((profiles) => {
-      setLeaders(profiles);
+      const topTreasures = profiles.sort((a,b) => b.treasure_count - a.treasure_count)
+      setLeaders(topTreasures);
       setIsLoaded(true);
     });
   }, []);

@@ -2,6 +2,7 @@
 
 import api from "@/utils/api";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function LeaderCard({ leader, place }) {
   const user_id =
@@ -17,12 +18,15 @@ typeof localStorage !== "undefined" && localStorage.getItem
   const [cardClasses, setCardClasses] = useState(
     "w-1/2 mx-auto flex justify-between mt-2 px-4 py-2 tracking-wide text-black transition-colors duration-200 transform  rounded  "
   );
+
+  const router = useRouter()
+
   const addFriendClick = ()=>{
    api.getUserTreasureCollection(user_id).then(res =>{
     const updatedFriends=[...res.friends,leader.id]
     return api.patchProfilefriends(user_id,updatedFriends)
-   }).then(response =>{
-    console.log(+user_id === +leader.id)
+   }).then(response => {
+    router.push("/friends")
    })
   }
   if(+user_id === +leader.id){
