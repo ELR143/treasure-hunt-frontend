@@ -12,9 +12,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <link rel="icon" href="/magikarp.png"></link>
-      <link href="https://api.fontshare.com/v2/css?f[]=tanker@400&display=swap" rel="stylesheet"></link>
-      <link href="https://api.fontshare.com/v2/css?f[]=kalam@1&display=swap" rel="stylesheet"></link>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <link href="https://api.fontshare.com/v2/css?f[]=tanker@400&display=swap" rel="stylesheet"></link>
+        <link href="https://api.fontshare.com/v2/css?f[]=kalam@1&display=swap" rel="stylesheet"></link>
+        {children}
+      </body>
     </html>
   );
 }
