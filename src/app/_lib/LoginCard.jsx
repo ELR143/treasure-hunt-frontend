@@ -16,15 +16,19 @@ export default function LoginCard({
   const [password, setPassword] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errMsg, setErrMsg] = useState("");
+  const [isLoading, setIsLoading] = useState("");
   const router = useRouter();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (firstFormButtonName === "Login") {
+      setIsLoading("Loading...")
       api
         .postLogin(username, password)
         .then((res) => {
+          setIsLoading("Loading...")
+          setErrMsg("");
           if (res.ok === true) {
             api.fetchData().then((res) => {
               const UserDetails = res.filter((user) => {
@@ -35,6 +39,7 @@ export default function LoginCard({
               router.push("/home");
             });
           } else if (res.ok === false) {
+            setIsLoading("")
             setErrMsg("Invalid username or password");
           }
         })
@@ -42,6 +47,7 @@ export default function LoginCard({
           console.log(err);
         });
     } else if (firstFormButtonName === "Sign Up") {
+      setIsLoading("Loading...")
       api
         .postNewUser(username, password)
         .then((res) => {
@@ -55,6 +61,7 @@ export default function LoginCard({
               router.push("/home");
             });
           } else if (res.ok === false) {
+            setIsLoading("")
             setErrMsg("That username is already taken");
           }
         })
@@ -65,14 +72,17 @@ export default function LoginCard({
     setUsername("");
     setPassword("");
     setIsSubmitted(true);
+    setErrMsg("");
   };
 
   const handleClick = (e) => {
     e.preventDefault();
     if (pageName === "Sign Up") {
       setPageName("Login");
+      setErrMsg("");
     } else if (pageName === "Login") {
       setPageName("Sign Up");
+      setErrMsg("");
     }
   };
 
@@ -106,7 +116,8 @@ export default function LoginCard({
           />
 
           <div className=" mt-2">
-            <p>{errMsg}</p>
+            <p className="text-center m-2 text-red-600 font-extrabold">{errMsg}</p>
+            <p className="text-center m-2 font-extrabold">{isLoading}</p>
             <button
               className="w-full px-4 py-2 tracking-wide text-black transition-colors duration-200 transform bg-white rounded hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
               type="submit"
