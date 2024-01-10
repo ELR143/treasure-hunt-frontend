@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 import Card from "../_lib/Card";
 
 export default function HomePage() {
