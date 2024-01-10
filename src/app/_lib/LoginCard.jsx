@@ -77,14 +77,14 @@ export default function LoginCard({
   };
 
   return (
-    <div className=" h-full mt-8 mx-auto   bg-[url('/LoginScroll.svg')] bg-contain bg-no-repeat">
+    <div className=" h-full mt-8  mx-auto drop-shadow-2xl font font-kalam  bg-[url('/LoginScroll.svg')]  bg-contain bg-no-repeat">
       <h2 className="mx-auto text-center text-2xl md:text-3xl mt-12 md:mt-16 font-bold">{firstFormButtonName}</h2>
       <Reveal>
         <form
           className="w-11/12 max-w-md mx-auto mt-6 px-8 "
           onSubmit={handleSubmit}
         >
-          <Reveal></Reveal>
+          
           <input
             className="w-full  px-4 py-2 text-gray-700 rounded-lg focus:outline-none"
             type="text"
