@@ -26,7 +26,7 @@ const avatarsObject = {
   alien: { avatar: GiAlienStare, name: "alien" },
   anubis: { avatar: GiAnubis, name: "anubis" },
   default: { avatar: RxAvatar, name: "default" },
-  AstronautHelmet: { avatar: GiAstronautHelmet, name: "GiAstronautHelmet" },
+  GiAstronautHelmet: { avatar: GiAstronautHelmet, name: "GiAstronautHelmet" },
   GiBabyFace: { avatar: GiBabyFace, name: "GiBabyFace" },
   GiBanana: { avatar: GiBanana, name: "GiBanana" },
   GiBandit: { avatar: GiBandit, name: "GiBandit" },
