@@ -7,10 +7,13 @@ import Xmarks from "../_lib/Xmarks";
 export default function Collection() {
   const [isLoading, setIsLoading] = useState(true);
   const [treasures, setTreasures] = useState([]);
+  const user_id =
+  typeof localStorage !== "undefined" && localStorage.getItem
+  ("user_id")
 
   useEffect(() => {
     api
-      .getUserTreasureCollection(37)
+      .getUserTreasureCollection(user_id)
       .then((response) => {
         const treasures = response.treasures;
         return treasures;

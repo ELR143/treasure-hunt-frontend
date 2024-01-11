@@ -203,7 +203,6 @@ const GoogleMapComponent = () => {
             } else if (theMap.zoom < 16) {
               setMinClusSize(1)
             }
-            console.log(theMap.zoom)
         } else {
             setFirstLoad(false)
         }

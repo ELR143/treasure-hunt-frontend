@@ -29,13 +29,13 @@ export default function Header() {
 
   return (
     <header className="w-screen  bg-teal-600 h-16 md:h-32 drop-shadow-2xl">
-      <div className="flex md:flex-row  items-center mx-auto justify-center drop-shadow-xl px-4 ">
+      <div className="flex md:flex-row  items-center mx-auto justify-center drop-shadow-xl px-4 max-h-full">
      
         <Link href="/home">
           <GiShipWreck className="none w-8 h-8 drop-shadow-2xl md:w-16 md:h-16 text-white mt-2" />
         </Link>
         <div className=" grow bg-[url('/headerscroll.svg')] bg-contain bg-no-repeat bg-center mt-2 ">
-          <h1 className=" md:text-8xl drop-shadow-xl text-3xl text-center font-tanker z-100 text-red-500 ">
+          <h1 className=" md:text-8xl drop-shadow-xl text-3xl text-center font-tanker z-100 text-red-500 leading-none ">
             WELCOME {user}!
           </h1>
         </div>
