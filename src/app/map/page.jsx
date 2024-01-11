@@ -210,9 +210,12 @@ const GoogleMapComponent = () => {
     }
 
     return isLoaded ? (
-        <>
+        <div className=" bg-[url('/bk.svg')] bg-contain  bg-stone-300 h-screen ">
+        
             {isLoading && <p>Loading treasures...</p>}
             <GoogleMap
+
+                className="drop-shadow-lg"
                 ref={mapRef}
                 mapContainerStyle={containerStyle}
                 center={watchingPosition ? userLocation : null}
@@ -281,9 +284,9 @@ const GoogleMapComponent = () => {
                     }
                 </MarkerClusterer>
             </GoogleMap>
-            <section className="flex flex-row">
+            <section className="flex flex-row justify-between mt-2">
                 <button
-                    className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mx-auto `}
+                    className={`bg-teal-500 hover:bg-teal-700 text-white w-5/12 font-bold py-2 px-4  h-16 font-kalam drop-shadow-lg rounded-lg mx-auto `}
                     onClick={handleToggleWatchPosition}
                 >
                     {watchingPosition
@@ -291,13 +294,13 @@ const GoogleMapComponent = () => {
                         : "Start Watching Position"}
                 </button>
                 <button
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mx-auto "
+                    className="bg-teal-500 hover:bg-blue-teal text-white w-5/12 font-bold py-2 px-4 font h-16 font-kalam drop-shadow-lg rounded-lg mx-auto "
                     onClick={handleScan}
                 >
                     Scan for Treasures!
                 </button>
             </section>
-        </>
+        </div>
     ) : (
         <h1>Map Loading...</h1>
     )

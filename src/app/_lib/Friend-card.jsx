@@ -2,6 +2,7 @@
 
 import api from '@/utils/api'
 import { useState } from 'react' 
+import { IoPersonRemove } from "react-icons/io5";
 
 export default function FriendCard({leader,place,friendsArr,setRefresh,refresh}){
     
@@ -30,16 +31,17 @@ export default function FriendCard({leader,place,friendsArr,setRefresh,refresh})
       }
     
         return (
-          <li
-            className={`${cardClasses} ${
-              logInProtection && userIsLoggedIn === leader.user_name
-                ? "bg-yellow-800"
-                : "bg - gray - 800"
-            }`}
-          >
-            <div className="flex  ">
-              <div className="bg-gray-600 p-2 rounded text-white ">{place + 1}</div>
-              <p className=" ml-1 mr-3 p-2  ">
+      
+            <li
+      className={`${cardClasses} ${
+        logInProtection && userIsLoggedIn === leader.user_name
+          ? "bg-yellow-400"
+          : "bg-white"
+      } w-2/3 drop-shadow-lg`}
+    >
+      <div className="flex flex-row w-full justify-between items-center drop-shadow-lg font-bold">
+        <div className="bg-amber-400 py-1 w-8 h-8 text-center rounded-lg text-black text-xs md:text-xl drop-shadow-lg ">{place + 1}</div>
+        <p className=" bg-teal-500 w-2/3 text-xs px-2 py-2 rounded-lg text-center text-white md:text-xl drop-shadow-lg">
                 {" "}
                 {leader.user_name} has collected{" "}
                 {leader.treasure_count <= 1
@@ -47,11 +49,9 @@ export default function FriendCard({leader,place,friendsArr,setRefresh,refresh})
                   : `${leader.treasure_count} treasures`}
                 !
               </p>
+              <IoPersonRemove className="w-8 h-8 mt-2 hover:text-teal-500 cursor-pointer drop-shadow-lg" onClick={removeFriendClick} />
             </div>
-            <span className="text-bold mx-2 p-2 flex-shrink-0 w-auto ">
-              Id {leader.id}
-            </span>
-            <button onClick={removeFriendClick}>remove friend</button>
+            
           </li>
         );
       }

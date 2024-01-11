@@ -3,7 +3,7 @@
 import api from "@/utils/api";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-
+import { IoMdPersonAdd } from "react-icons/io";
 export default function LeaderCard({ leader, place }) {
   const user_id =
 typeof localStorage !== "undefined" && localStorage.getItem
@@ -34,13 +34,13 @@ typeof localStorage !== "undefined" && localStorage.getItem
       <li
         className={`${cardClasses} ${
           logInProtection && userIsLoggedIn === leader.user_name
-            ? "bg-yellow-800"
-            : "bg - gray - 800"
-        }`}
+            ? "bg-yellow-400"
+            : "bg-gray-800"
+        } w-2/3` }
       >
-        <div className="flex  ">
-          <div className="bg-gray-600 p-2 rounded text-white ">{place + 1}</div>
-          <p className=" ml-1 mr-3 p-2  ">
+        <div className="flex flex-row w-full   items-center  drop-shadow-lg font-bold">
+          <div className="bg-amber-400  py-2 w-8 h-8 text-black text-center p-2 rounded-lg text-xs md:text-xl drop-shadow-lg mr-2">{place + 1}</div>
+          <p className="  bg-white w-2/3 text-xs px-2 py-2 ml-2  text-center rounded-lg text-teal-600 md:text-lg drop-shadow-lg ">
             {" "}
             {leader.user_name} has collected{" "}
             {leader.treasure_count <= 1
@@ -49,9 +49,7 @@ typeof localStorage !== "undefined" && localStorage.getItem
             !
           </p>
         </div>
-        <span className="text-bold mx-2 p-2 flex-shrink-0 w-auto ">
-          Id {leader.id}
-        </span>
+       
       </li>
     );
   }else{
@@ -59,25 +57,24 @@ typeof localStorage !== "undefined" && localStorage.getItem
     <li
       className={`${cardClasses} ${
         logInProtection && userIsLoggedIn === leader.user_name
-          ? "bg-yellow-800"
-          : "bg - gray - 800"
-      }`}
+          ? "bg-yellow-400"
+          : "bg-white"
+      } w-2/3 drop-shadow-lg`}
     >
-      <div className="flex  ">
-        <div className="bg-gray-600 p-2 rounded text-white ">{place + 1}</div>
-        <p className=" ml-1 mr-3 p-2  ">
+      <div className="flex flex-row w-full justify-between items-center drop-shadow-lg font-bold">
+        <div className="bg-amber-400 py-1 w-8 h-8 text-center rounded-lg text-black text-xs md:text-xl drop-shadow-lg ">{place + 1}</div>
+        <p className=" bg-teal-500 w-2/3 text-xs px-2 py-2 rounded-lg text-center text-white md:text-xl drop-shadow-lg">
           {" "}
           {leader.user_name} has collected{" "}
           {leader.treasure_count <= 1
-            ? `${leader.treasure_count} treasure`
+            ? `${leader.treasure_count} treasure`                
             : `${leader.treasure_count} treasures`}
           !
         </p>
+        <IoMdPersonAdd className="w-8 h-8 mt-2 hover:text-teal-500 cursor-pointer drop-shadow-lg" onClick={addFriendClick}/>
       </div>
-      <span className="text-bold mx-2 p-2 flex-shrink-0 w-auto ">
-        Id {leader.id}
-      </span>
-      <button onClick={addFriendClick}>add friend</button>
+     
+     
     </li>
   );
 }}

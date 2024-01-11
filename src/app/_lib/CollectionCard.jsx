@@ -12,7 +12,7 @@ import { LiaFeatherSolid } from "react-icons/lia";
 import Reveal from "./Reveal";
 
 const iconLookup = {
-  1: <GiGems />,
+  1: <GiGems/>,
   2: <LiaGemSolid />,
   3: <GiGoldBar />,
   4: <GiOpenTreasureChest />,
@@ -41,16 +41,16 @@ export default function CollectionCard({ treasure }) {
   return (
     <Reveal >
       <div
-        className="relative bg-white rounded-lg overflow-hidden w-full shadow-md p-4 group"
+        className="relative bg-white rounded-lg overflow-hidden md:w-full h-56 p-4 group drop-shadow-lg"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
         <div>
           {icon &&
             React.cloneElement(icon, {
-              className: "text-yellow-400 mx-auto w-24 h-24",
+              className: "text-amber-400 mx-auto md:w-24 md:h-24 w-16 h-16 ",
             })}
-          <div className="text-center mt-8">
+          <div className="text-center mt-8  drop-shadow-lg">
             <p className="text-lg text-gray-600 font-semibold mb-2">
               {treasure.name}
             </p>
@@ -58,7 +58,7 @@ export default function CollectionCard({ treasure }) {
         </div>
 
         {isHovered && (
-          <div className="absolute inset-0 bg-white bg-opacity-90 flex items-center justify-center text-center">
+          <div className="absolute inset-0 bg-white bg-opacity-90 flex items-center justify-center text-center  drop-shadow-lg">
             <p className="text-sm text-gray-500">
               Additional details: Lat:{treasure.lat}, Lng:{treasure.lng}, Collected by {treasure.collected_by - 1} other pirates
             </p>
