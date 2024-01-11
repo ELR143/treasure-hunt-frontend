@@ -231,7 +231,7 @@ const GoogleMapComponent = () => {
                 }}
             >
                 <Marker position={userLocation} icon={icons.user} />
-                <Circle center={userLocation} radius={range} />
+                {/* <Circle center={userLocation} radius={range} /> */}
                 <MarkerClusterer
                     gridSize={200}
                     averageCenter={true}
