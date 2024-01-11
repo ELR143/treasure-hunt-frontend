@@ -13,7 +13,7 @@ export default function HomePage() {
 
   return (
     <>
-      <main  className="h-screen w-screen flex flex-col font-kalam font-bold items-center justify-center bg-gradient-to-b from-blue-300 to-teal-300">
+      <main  className="h-screen w-screen flex flex-col font-kalam font-bold items-center bg-[url('/backgoundfinal.svg')] bg-contain justify-center">
         <div className="bg-[url('/pagenav.svg')] h-full bg-contain md:bg-center bg-no-repeat mx-auto drop-shadow-2xl mt-12 md:mt-4">
 
       

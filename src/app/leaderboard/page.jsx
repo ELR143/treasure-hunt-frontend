@@ -36,7 +36,7 @@ export default function Leaderboard() {
   if (!isLoaded) return <p>Leaders are loading...</p>;
   return (
     <>
-      <main className="w-screen  flex flex-col mx-auto text-black font-kalam bg-gradient-to-b bg-cover from-blue-300  to-teal-300 ">
+      <main className="w-screen  flex flex-col mx-auto text-black font-kalam bg-[url('/backgoundfinal.svg')] bg-contain ">
         <h2 className="md:text-5xl mx-auto mt-4 text-3xl font-bold bg-white px-10 py-2 w-2/3 text-center rounded-lg font-tanker text-amber-400">LEADERBOARD</h2>
         <Filter  setFilter={setFilter} />
         <ul>

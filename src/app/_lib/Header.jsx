@@ -28,20 +28,20 @@ export default function Header() {
   }, [avatar]);
 
   return (
-    <header className="w-screen bg-[url('/bk.svg')] bg-cover bg-stone-300 h-16 md:h-32 drop-shadow-2xl">
+    <header className="w-screen  bg-teal-600 h-16 md:h-32 drop-shadow-2xl">
       <div className="flex md:flex-row  items-center mx-auto justify-center drop-shadow-xl px-4 ">
      
         <Link href="/home">
-          <GiShipWreck className="none w-8 h-8 drop-shadow-2xl md:w-16 md:h-16 text-red-600 mt-2" />
+          <GiShipWreck className="none w-8 h-8 drop-shadow-2xl md:w-16 md:h-16 text-white mt-2" />
         </Link>
         <div className=" grow bg-[url('/headerscroll.svg')] bg-contain bg-no-repeat bg-center mt-2 ">
-          <h1 className=" md:text-8xl drop-shadow-xl text-3xl text-center font-tanker z-100 text-teal-600 ">
+          <h1 className=" md:text-8xl drop-shadow-xl text-3xl text-center font-tanker z-100 text-red-500 ">
             WELCOME {user}!
           </h1>
         </div>
 
         <Link href="/profile">
-          <avatar.avatar className="none w-8 drop-shadow-2xl h-8 md:w-12 md:h-12 text-red-600 mt-2" />
+          <avatar.avatar className="none w-8 drop-shadow-2xl h-8 md:w-16 md:h-16 text-white mt-2" />
         </Link>
       </div>
     </header>

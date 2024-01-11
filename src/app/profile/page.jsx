@@ -71,10 +71,10 @@ export default function Profile() {
   return (
     <>
       {logInProtection ? (
-        <main className="flex flex-col mx-auto h-screen w-screen font-kalam font-bold items-center justify-center bg-gradient-to-b from-blue-300 to-teal-300 ">
+        <main className="flex flex-col mx-auto h-screen w-screen font-kalam font-bold items-center justify-center bg-[url('/backgoundfinal.svg')] bg-contain ">
           <div className="bg-[url('/pagenav.svg')] h-full bg-contain md:bg-center bg-no-repeat mx-auto drop-shadow-2xl mt-12 md:mt-4">
             <div className="">
-              <avatar.avatar className=" mt-4 w-8 h-8 md:mt-16 md:w-16 md:h-16 mx-auto text-red-600 drop-shadow-lg" />
+              <avatar.avatar className=" mt-4 w-8 h-8 md:mt-16 md:w-16 md:h-16 mx-auto text-red-500 drop-shadow-lg" />
             </div>
 
             <ul className="mt-0 d:mt-8 drop-shadow-lg">

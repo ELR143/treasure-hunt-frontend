@@ -13,8 +13,8 @@ export default function Avatar() {
   useEffect(() => {}, [avatar_name]);
 
   return (
-    <main>
-      <h2 className="text-center  bg-gray-800 rounded m-2 p-2 text-white text-lg font-bold">
+    <main className="bg-[url('/backgoundfinal.svg')] bg-contain">
+      <h2 className="text-center bg-gray-800 rounded m-2 p-2 text-white text-lg font-bold">
         Choose your avatar: {avatar_name}
       </h2>
       <section>

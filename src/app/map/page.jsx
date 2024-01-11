@@ -210,7 +210,7 @@ const GoogleMapComponent = () => {
     }
 
     return isLoaded ? (
-        <div className=" bg-[url('/bk.svg')] bg-contain  bg-stone-300 h-screen ">
+        <div className=" bg-[url('/backgoundfinal.svg')] bg-contain h-screen ">
         
             {isLoading && <p>Loading treasures...</p>}
             <GoogleMap

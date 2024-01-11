@@ -37,7 +37,7 @@ export default function FriendsPage() {
 
   if (!isLoaded) return <h2 className="mt-0">Friends Loading...</h2>;
     return (
-      <main className="w-screen h-screen  flex flex-col mx-auto text-black font-kalam bg-gradient-to-b bg-cover from-blue-300  to-teal-300  ">
+      <main className="w-screen h-screen  flex flex-col mx-auto text-black font-kalam bg-[url('/backgoundfinal.svg')] bg-contain  ">
         
         <h2 className="md:text-5xl mx-auto  mt-4 text-3xl font-bold bg-white px-10 py-2 w-2/3 text-center rounded-lg font-tanker text-amber-400">
           YOUR FRIENDS
