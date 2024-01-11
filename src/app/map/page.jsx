@@ -56,7 +56,7 @@ const GoogleMapComponent = () => {
 
     const containerStyle = {
         width: "100%",
-        height: "80vh",
+        height: "70vh",
         margin: "2px",
         borderRadius: "8px",
         paddingTop: "100px",
