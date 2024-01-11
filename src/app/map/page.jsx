@@ -294,7 +294,7 @@ const GoogleMapComponent = () => {
                         : "Start Watching Position"}
                 </button>
                 <button
-                    className="bg-teal-500 hover:bg-blue-teal text-white w-5/12 font-bold py-2 px-4 font h-16 font-kalam drop-shadow-lg rounded-lg mx-auto "
+                    className="bg-teal-500 hover:bg-teal-700 text-white w-5/12 font-bold py-2 px-4 font h-16 font-kalam drop-shadow-lg rounded-lg mx-auto "
                     onClick={handleScan}
                 >
                     Scan for Treasures!
