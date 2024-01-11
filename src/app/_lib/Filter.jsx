@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 export default function Filter({ setFilter }) {
-  const [filterBy, setFilterBy] = useState();
+  const [filterBy, setFilterBy] = useState("treasure_count-desc");
   const filterOnChange = (e) => {
     setFilterBy(e.target.value);
   };
@@ -19,7 +19,7 @@ export default function Filter({ setFilter }) {
         <select
           name="pets"
           id="pet-select"
-          className="md:pl-1 ml-2 mr-2 rounded w-1/3 text-teal-800 font-bold first-line  h-8 "
+          className="md:pl-1 ml-2 mr-2 rounded w-auto text-teal-800 font-bold first-line  h-8  "
           onChange={filterOnChange}
         >
           <option value="treasure_count-desc">Richest Pirates</option>
