@@ -13,6 +13,7 @@ import { Inconsolata } from "next/font/google"
 import { amp } from "../../../next.config"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import Xmarks from "../_lib/Xmarks"
 
 const GoogleMapComponent = () => {
     // the default location will be the Northcoders base in Manchester
@@ -301,7 +302,15 @@ const GoogleMapComponent = () => {
             </section>
         </div>
     ) : (
-        <h1>Map Loading...</h1>
+        (
+            <div className="relative w-screen font-kalam bg-[url('/backgoundfinal.svg')] bg-contain">
+            <img className=" mx-auto w-96  z-0" src="/Loginmap.svg" alt="Map" />
+            <div className="absolute top-0 left-0 mt-10 right-0 z-10 w-80 mx-auto flex flex-col items-center justify-center">
+            <p className="mt-20 text-xl text-red-500 animate-bounce">Loading Map...</p>
+              <Xmarks className="animate-bounce" /> 
+            </div>
+          </div>
+          )
     )
 }
 

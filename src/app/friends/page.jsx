@@ -2,6 +2,7 @@
 import api from "@/utils/api";
 import FriendCard from "../_lib/Friend-card";
 import { useEffect, useState } from "react";
+import Xmarks from "../_lib/Xmarks";
 export default function FriendsPage() {
   const user_id =
     typeof localStorage !== "undefined" && localStorage.getItem("user_id");
@@ -35,7 +36,15 @@ export default function FriendsPage() {
     setIsLoaded(false);
   }, [refresh]);
 
-  if (!isLoaded) return <h2 className="mt-0">Friends Loading...</h2>;
+  if (!isLoaded) return (
+    <div className="relative w-screen font-kalam bg-[url('/backgoundfinal.svg')] bg-contain">
+    <img className=" mx-auto w-96  z-0" src="/Loginmap.svg" alt="Map" />
+    <div className="absolute top-0 left-0 mt-10 right-0 z-10 w-80 mx-auto flex flex-col items-center justify-center">
+    <p className="mt-20 text-xl text-red-500 animate-bounce">Loading Friends List...</p>
+      <Xmarks className="animate-bounce" /> 
+    </div>
+  </div>
+  );
     return (
       <main className="w-screen h-screen  flex flex-col mx-auto text-black font-kalam bg-[url('/backgoundfinal.svg')] bg-contain  ">
         
