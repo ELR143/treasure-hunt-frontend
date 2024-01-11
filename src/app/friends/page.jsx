@@ -39,7 +39,7 @@ export default function FriendsPage() {
     return (
       <main className="w-screen h-screen  flex flex-col mx-auto text-black font-kalam bg-[url('/backgoundfinal.svg')] bg-contain  ">
         
-        <h2 className="md:text-5xl mx-auto  mt-4 text-3xl font-bold bg-white px-10 py-2 w-2/3 text-center rounded-lg font-tanker text-amber-400">
+        <h2 className="md:text-5xl mx-auto  mt-4 text-3xl font-bold bg-white px-10 py-2 w-2/3 text-center drop-shadow-lg  rounded-lg font-tanker text-amber-400">
           YOUR FRIENDS
         </h2>
         

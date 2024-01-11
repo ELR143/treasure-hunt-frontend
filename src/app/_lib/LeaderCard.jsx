@@ -40,7 +40,7 @@ typeof localStorage !== "undefined" && localStorage.getItem
       >
         <div className="flex flex-row w-full   items-center  drop-shadow-lg font-bold">
           <div className="bg-amber-400  py-2 w-8 h-8 text-black text-center p-2 rounded-lg text-xs md:text-xl drop-shadow-lg mr-2">{place + 1}</div>
-          <p className="  bg-white w-2/3 text-xs px-2 py-2 ml-2  text-center rounded-lg text-teal-600 md:text-lg drop-shadow-lg ">
+          <p className="  bg-white w-2/3 text-xs px-2 py-2 md:ml-28  text-center rounded-lg text-teal-600 md:text-lg drop-shadow-lg ">
             {" "}
             {leader.user_name} has collected{" "}
             {leader.treasure_count <= 1

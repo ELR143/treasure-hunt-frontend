@@ -17,7 +17,7 @@ export default function HomePage() {
         <div className="bg-[url('/pagenav.svg')] h-full bg-contain md:bg-center bg-no-repeat mx-auto drop-shadow-2xl mt-12 md:mt-4">
 
       
-        <ul className="w-screen mt-12">
+        <ul className="w-screen mt-12 drop-shadow-lg ">
           {homeLinks.map((link, i) => {
             return <Card className="drop-shadow-lg" key={i} cardHeading={link} />;
           })}

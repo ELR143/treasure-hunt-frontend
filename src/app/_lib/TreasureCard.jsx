@@ -59,13 +59,13 @@ export default function TreasureCard({ id }) {
   return (
     <>
       <button
-        className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-gray-800 rounded hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
+        className="px-4 py-2 tracking-wide mt-4 text-white transition-colors drop-shadow-lg duration-200 transform bg-teal-500 w-1/3 rounded-lg hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
         type="submit"
         onClick={handleSubmit}
       >
         Collect Treasure
       </button>
-      <h1>Only {percent}% of pirates have found this treasure!</h1>
+      <h1 className="mt-4 drop-shadow-lg">Only <span className="text-white">{percent}%</span> of pirates have found this treasure!</h1>
     </>
   );
 }
